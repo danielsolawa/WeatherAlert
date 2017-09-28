@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -32,60 +32,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:enabled="false"
-                android:text="Select weather type"
+                android:text="@string/select_weather_type"
                 android:textColor="@color/colorBlack"
                 android:textSize="25sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/rb_cloud"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="onRadioButtonClicked"
-                    android:text="Cloud"
-                    android:textSize="15sp" />
-
-                <RadioButton
-                    android:id="@+id/rb_rain"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="onRadioButtonClicked"
-                    android:text="Rain"
-                    android:textSize="15sp" />
-
-                <RadioButton
-                    android:id="@+id/rb_snow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="onRadioButtonClicked"
-                    android:text="Snow"
-                    android:textSize="15sp" />
-
-                <RadioButton
-                    android:id="@+id/rb_thunderstorm"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="onRadioButtonClicked"
-                    android:text="Storm"
-                    android:textSize="15sp" />
-
-                <RadioButton
-                    android:id="@+id/rb_atmosphere"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="onRadioButtonClicked"
-                    android:text="Atmosphere"
-                    android:textSize="15sp" />
-            </LinearLayout>
 
         </RadioGroup>
 
@@ -102,17 +51,19 @@
             android:id="@+id/ed_temp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:enabled="true"
             android:digits="0123456789-."
             android:ems="10"
-            android:hint="Temperature"
-            android:inputType="numberDecimal" />
+            android:hint="@string/temperature_hint"
+            android:inputType="numberDecimal"
+            android:textColor="@color/colorBlack"
+            android:textSize="25sp"/>
 
         <Button
             android:id="@+id/saveData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Save" />
+            android:text="@string/save" />
 
 
     </LinearLayout>
@@ -121,8 +72,8 @@
         android:id="@+id/confirm_layout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:visibility="gone"
         android:orientation="vertical"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -138,24 +89,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="15dp"
+            android:text="TextView"
             android:textAlignment="center"
-            android:textSize="20sp"
-            android:text="TextView" />
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/confirm_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Confirm" />
+            android:text="@string/confirm" />
 
         <Button
             android:id="@+id/edit_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Edit" />
+            android:text="@string/edit" />
     </LinearLayout>
-
-
 
 
 </android.support.constraint.ConstraintLayout>

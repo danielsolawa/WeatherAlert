@@ -18,7 +18,8 @@ public final class Constants {
     public static final String LOCATION_DATA_EXTRA = PACKAGE_NAME + ".LOCATION_DATA_EXTRA";
     public static final String LAST_LOCATION = PACKAGE_NAME + ".LAST_LOCATION";
     public static final String FIRST_TIME = PACKAGE_NAME + ".FIRST_TIME";
-    public static final String LOCATION_UPDATED = "locationUpdated";
+    public static final String ALARM_STATE = PACKAGE_NAME + ".ALARM_STATE";
+
 
 
 }

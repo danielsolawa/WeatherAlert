@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +15,15 @@ import android.widget.TextView;
 import com.danielsolawa.locationapp.R;
 import com.danielsolawa.locationapp.model.WeatherData;
 import com.danielsolawa.locationapp.utils.Constants;
+import com.danielsolawa.locationapp.utils.DateUtils;
+import com.danielsolawa.locationapp.utils.Localization;
 
 import org.parceler.Parcels;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by NeverForgive on 2017-09-13.
@@ -91,10 +94,24 @@ public class HorizontalListViewFragment extends Fragment {
                                     + weatherData.getIcon()
                             , null, null);
 
+
             holder.icon.setImageResource(imageId);
-            holder.localityTv.setText(weatherData.getLocality().getName());
+            String windSpeed = convertSpeed(weatherData.getWindSpeed());
+            holder.windSpeedTv.setText(String.format("%s km/h", windSpeed));
+            holder.tempTv.setText(String.format("%s \u00b0C",
+                    weatherData.getTemp()));
             holder.descTv.setText(weatherData.getDescription());
-            holder.dateTv.setText(weatherData.getDate());
+            holder.dateTv.setText(DateUtils.getLocalizedDate(weatherData.getDate()));
+        }
+
+
+
+        private String convertSpeed(double windSpeed) {
+            double convertedSpeed = (windSpeed * 3600) / 1000;
+            DecimalFormat dc = new DecimalFormat("###.##");
+
+
+            return dc.format(convertedSpeed);
         }
 
         @Override
@@ -105,16 +122,18 @@ public class HorizontalListViewFragment extends Fragment {
 
     public class WeatherViewHolder extends  RecyclerView.ViewHolder{
         public ImageView icon;
-        public TextView localityTv;
+        public TextView windSpeedTv;
         public TextView descTv;
         public TextView dateTv;
+        public TextView tempTv;
 
         public WeatherViewHolder(View itemView) {
             super(itemView);
             icon = (ImageView) itemView.findViewById(R.id.icon_rv);
-            localityTv = (TextView) itemView.findViewById(R.id.locality_rv);
+            windSpeedTv = (TextView) itemView.findViewById(R.id.wind_speed_rv);
             descTv = (TextView) itemView.findViewById(R.id.desc_rv);
             dateTv = (TextView) itemView.findViewById(R.id.date_rv);
+            tempTv = (TextView) itemView.findViewById(R.id.temp_rv);
         }
     }
 }

@@ -1,7 +1,6 @@
 package com.danielsolawa.locationapp.adapter;
 
 import android.content.Context;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -12,6 +11,7 @@ import android.widget.TextView;
 
 import com.danielsolawa.locationapp.R;
 import com.danielsolawa.locationapp.model.Alert;
+import com.danielsolawa.locationapp.utils.Localization;
 
 import java.util.List;
 
@@ -23,14 +23,19 @@ public class ConditionsAdapter extends ArrayAdapter<Alert>{
 
     private static final int ROW_LAYOUT = R.layout.conditions_item;
     private Context context;
+    private Localization localization;
     private List<Alert> alerts;
     private RowClicker clicker;
 
-    public ConditionsAdapter(@NonNull Context context,@NonNull List<Alert> alerts, RowClicker clicker) {
+    public ConditionsAdapter(@NonNull Context context, Localization localization,
+                             @NonNull List<Alert> alerts, RowClicker clicker) {
         super(context, ROW_LAYOUT, alerts);
         this.context = context;
+        this.localization = localization;
         this.alerts = alerts;
         this.clicker = clicker;
+
+
     }
 
     @NonNull
@@ -47,12 +52,17 @@ public class ConditionsAdapter extends ArrayAdapter<Alert>{
 
         localityTv.setText(alert.getLocality().getName());
         tempTv.setText(alert.getTemperatureCondition() + "\u00b0C");
-        descTv.setText(alert.getWeatherCondition());
+        String weatherCondition = alert.getWeatherCondition();
+        if(localization.isLocalized()){
+            weatherCondition = localization.localizeAlertConditionString(weatherCondition);
+        }
+
+        descTv.setText(weatherCondition);
 
         rowView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clicker.onOnlick(alert.getId());
+                clicker.onClick(alert.getId());
             }
         });
 

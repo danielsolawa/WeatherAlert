@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Home activity section -->
+    <string name="description">Opis:</string>
+    <string name="pressure">Ciśnienie:</string>
+    <string name="visibility">Widoczność:</string>
+    <string name="wind_speed">Prędkość wiatru:</string>
+
+    <!-- Wizard activity section -->
+    <string name="cloud">Chmury</string>
+    <string name="rain">Deszcz</string>
+    <string name="snow">Śnieg</string>
+    <string name="thunderstorm">Burza</string>
+    <string name="atmosphere">Inne</string>
+    <string name="select_weather_type">Wybierz typ pogody:</string>
+    <string name="temperature">Temperatura:</string>
+    <string name="save">Zapisz</string>
+    <string name="confirm">Zatwierdź</string>
+    <string name="edit">Edytuj</string>
+    <string name="locality">Miejscowość:</string>
+    <string name="weather_type">Typ pogody:</string>
+    <string name="item_must_selected">Musisz wybrać typ pogody:</string>
+    <string name="field_cant_be_empty">To pole nie może być puste:</string>
+    <string name="saved_successfully">Zapisano!</string>
+    <string name="temperature_hint">Temperatura</string>
+
+    <!-- Conditions activity section -->
+    <string name="alarms_on_off">Alarmy wł/wył</string>
+    <string name="click_to_remove">kliknij żeby usunąć</string>
+    <string name="add_alarm">Dodaj alarm</string>
+
+
+    <!-- Location section-->
+    <string name="updating_location_data">Aktualizuję położenie...</string>
+
+    <!-- Dialogs -->
+    <string name="delete_dialog">"Czy na pewno chcesz usunąć ten alarm?"</string>
+    <string name="delete_dialog_remove">"usuń</string>
+    <string name="delete_dialog_cancel">"anuluj"</string>
+    <string name="warning_dialog">"Musisz dodać przynajmniej jeden warunek by korzystać z alarmów"</string>
+
+    <!-- Notification -->
+    <string name="not_starts_at">"zacznie się"</string>
+
+
+    <!-- Weather conditions-->
+    <string-array name="weather_conditions">
+        <!-- thunderstorm-->
+        <item>burza z lekkim deszczem</item>
+        <item>burza z deszczem</item>
+        <item>burza z intensywnym deszczem</item>
+        <item>lekka burza</item>
+        <item>gwałtowna burza</item>
+        <item>strzępiasta burza</item>
+        <item>burza z lekką mżawką</item>
+        <item>burza z mżawką</item>
+        <item>burza z intensywną mżawką</item>
+
+        <!-- clouds-->
+        <item>czyste niebo</item>
+        <item>pojedyncze chmury</item>
+        <item>umiarkowane zachmurzenie</item>
+        <item>rozproszone chmury</item>
+        <item>duże zachmurzenie</item>
+
+        <!-- atmosphere -->
+        <item>zamglenie</item>
+        <item>zadymienie</item>
+        <item>lekkie zamglenie</item>
+        <item>zamieć piaskowa</item>
+        <item>duże zamglenie</item>
+        <item>piasek</item>
+        <item>pył</item>
+        <item>pył wulkaniczny</item>
+        <item>nawałnica</item>
+        <item>tornado</item>
+
+        <!-- snow -->
+        <item>lekkie opady śniegu</item>
+        <item>opady śniegu</item>
+        <item>mocne opady śniegu</item>
+        <item>deszcz ze śniegiem</item>
+        <item>strumień deszczu ze śniegiem</item>
+        <item>lekki deszcz ze śniegiem</item>
+        <item>deszcz ze śniegiem</item>
+        <item>lekki strumień śniegu</item>
+        <item>strumień śniegu</item>
+        <item>mocny strumień śniegu</item>
+
+        <!-- rain -->
+        <item>lekki deszcz</item>
+        <item>umiarkowane opday deszczu</item>
+        <item>mocne opady deszczu</item>
+        <item>bardzo mocne opady deszczu</item>
+        <item>gwałtowne opady deszczu</item>
+        <item>zamarzający deszcz</item>
+        <item>lekki strumień deszczu</item>
+        <item>strumień deszczu</item>
+        <item>mocny strumień deszczu</item>
+        <item>strzępiaste opady deszczu</item>
+
+        <!-- drizzle -->
+        <item>lekka mżawka</item>
+        <item>mżawka</item>
+        <item>mocna mżawka</item>
+        <item>lekka mżawka z deszczem</item>
+        <item>mżawka z deszczem</item>
+        <item>mocna mżawka z deszczem</item>
+        <item>strumień deszczu z mżawką</item>
+        <item>mocny strumień deszczu z mżawką</item>
+        <item>strumień mżawki</item>
+
+    </string-array>
+
+    <string-array name="weather_clouds">
+        <item>czyste niebo</item>
+        <item>zachmurzenie</item>
+        <item>deszcz</item>
+        <item>śnieg</item>
+        <item>burza</item>
+        <item>średnie zamglenie</item>
+        <item>dym</item>
+        <item>lekkie zamglenie</item>
+        <item>mgła</item>
+        <item>tornado</item>
+    </string-array>
+
+    <string name="title_activity_home">HomeActivity</string>
+</resources>

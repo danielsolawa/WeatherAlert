@@ -6,5 +6,5 @@ package com.danielsolawa.locationapp.adapter;
 
 public interface RowClicker {
 
-    void onOnlick(long iD);
+    void onClick(long iD);
 }

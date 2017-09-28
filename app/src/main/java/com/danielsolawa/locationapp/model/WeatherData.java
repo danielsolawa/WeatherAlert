@@ -37,10 +37,12 @@ public class WeatherData extends Model{
     @Column(name = "wind_speed")
     private double windSpeed;
 
+
     @Column(name = "locality",
             onDelete = Column.ForeignKeyAction.CASCADE,
             onUpdate = Column.ForeignKeyAction.CASCADE)
     private Locality locality;
+
 
 
     public WeatherData() {
@@ -104,6 +106,7 @@ public class WeatherData extends Model{
         this.windSpeed = windSpeed;
     }
 
+
     public Locality getLocality() {
         return locality;
     }
@@ -111,7 +114,6 @@ public class WeatherData extends Model{
     public void setLocality(Locality locality) {
         this.locality = locality;
     }
-
 
     @Override
     public String toString() {

@@ -8,5 +8,5 @@ import com.danielsolawa.locationapp.model.LocationInfo;
 
 public interface LocationResultHandler {
 
-    void createDialog(String msg, LocationInfo locationInfo);
+    void handleLocationResult(String msg, LocationInfo locationInfo);
 }

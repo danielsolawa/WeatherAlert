@@ -216,7 +216,7 @@ public class LocationUtils {
             String addressOutPut = resultData.getString(Constants.RESULT_DATA_KEY);
             LocationInfo locationInfo = resultData.getParcelable(Constants.RESULT_DATA_OBJECT);
             if(locationInfo != null)
-                locationResultHandler.createDialog(addressOutPut, locationInfo);
+                locationResultHandler.handleLocationResult(addressOutPut, locationInfo);
 
 
         }

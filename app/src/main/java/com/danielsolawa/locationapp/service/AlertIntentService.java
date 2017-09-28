@@ -5,33 +5,29 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.media.RingtoneManager;
-import android.net.Uri;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.activeandroid.ActiveAndroid;
-import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
 import com.danielsolawa.locationapp.R;
+import com.danielsolawa.locationapp.WeatherApp;
 import com.danielsolawa.locationapp.activity.HomeActivity;
 import com.danielsolawa.locationapp.client.OpenWeatherRestClient;
 import com.danielsolawa.locationapp.model.Alert;
 import com.danielsolawa.locationapp.model.Locality;
 import com.danielsolawa.locationapp.model.WeatherData;
-import com.danielsolawa.locationapp.utils.Constants;
+import com.danielsolawa.locationapp.utils.AlertPriority;
+import com.danielsolawa.locationapp.utils.DateUtils;
+import com.danielsolawa.locationapp.utils.Localization;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -48,10 +44,12 @@ import cz.msebera.android.httpclient.Header;
 public class AlertIntentService extends IntentService {
 
     private static final String TAG = AlertIntentService.class.getSimpleName();
+    private WeatherApp app;
     public static final int ID = 1;
     private Calendar cal;
     private String dateAsString;
     private Locality locality;
+    private Localization loc;
 
     public AlertIntentService() {
         super(TAG);
@@ -60,13 +58,19 @@ public class AlertIntentService extends IntentService {
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
         initCalendar();
-        locality = fetchLocationData(getLastLocation());
+        initLocation();
         String url = OpenWeatherRestClient.generateUrl(locality.getLatitude(),
                 locality.getLongitude(),
                 OpenWeatherRestClient.QueryType.forecast);
         fetchForecast(url);
 
 
+    }
+
+    private void initLocation() {
+        loc = new Localization(getApplicationContext());
+        app = (WeatherApp) getApplication();
+        locality = app.loadLastLocationFromPreferences();
     }
 
     // sets tomorrow date
@@ -81,6 +85,7 @@ public class AlertIntentService extends IntentService {
 
 
     private void fetchForecast(String url) {
+        Log.d(TAG, "fetch forecast");
 
         OpenWeatherRestClient.getSynchronous(url, null, new JsonHttpResponseHandler(){
             @Override
@@ -117,13 +122,18 @@ public class AlertIntentService extends IntentService {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-                saveWeatherData(weatherDataList);
-                List<WeatherData> fullFilledConditions =  filterMatchingConditions(weatherDataList);
+                Log.d(TAG, "matching conditions..");
+                List<WeatherData> fullFilledConditions =  matchConditions(weatherDataList);
 
                 if(fullFilledConditions.size() > 0){
-                    sendNotifications(fullFilledConditions);
+
+                    WeatherData weatherData =
+                            AlertPriority.getHighestPriorityCondition(fullFilledConditions);
+
+                    sendNotification(weatherData);
                 }
+
+
 
             }
 
@@ -135,28 +145,11 @@ public class AlertIntentService extends IntentService {
         });
     }
 
-    private void saveWeatherData(List<WeatherData> weatherDataList) {
-        clearWeatherData();
-        ActiveAndroid.beginTransaction();
-        try {
-            for(WeatherData w : weatherDataList){
-                w.save();
-            }
-            ActiveAndroid.setTransactionSuccessful();
-        }finally {
-            ActiveAndroid.endTransaction();
-        }
 
 
-    }
 
-    private void clearWeatherData() {
-        new Delete().from(WeatherData.class).execute();
-    }
-
-
-    private void sendNotifications(List<WeatherData> fullFilledConditions) {
-        WeatherData weather = fullFilledConditions.get(0);
+    private void sendNotification(WeatherData weatherData) {
+        Log.d(TAG, "sending notifications");
 
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -169,13 +162,19 @@ public class AlertIntentService extends IntentService {
             Notification.Builder builder = new Notification.Builder(getApplicationContext());
             int imgId = getResources()
                     .getIdentifier("com.danielsolawa.locationapp:drawable/"
-                                    + weather.getIcon()
+                                    + weatherData.getIcon()
                             , null, null);
             Bitmap largeIcon = generateBitmap(imgId);
 
+        if(Locale.getDefault() != Locale.ENGLISH){
+            weatherData.setDescription(loc.localizeWeatherDataString(weatherData.getDescription()));
+        }
 
-            builder.setContentTitle("Weather Alert!");
-            builder.setContentText(weather.getDescription() +"\n" + "starts at " + weather.getDate());
+
+            builder.setContentTitle(weatherData.getDescription() + " " +
+                    DateUtils.getLocalizedDate(weatherData.getDate())  );
+            builder.setContentText(getString(R.string.temperature) + " "
+                    + weatherData.getTemp() + "\u00b0C");
             builder.setLargeIcon(largeIcon);
             builder.setSmallIcon(imgId);
             builder.setAutoCancel(true);
@@ -204,15 +203,14 @@ public class AlertIntentService extends IntentService {
     }
 
 
-    private List<WeatherData> filterMatchingConditions(List<WeatherData> weatherDataList) {
+    private List<WeatherData> matchConditions(List<WeatherData> weatherDataList) {
         List<Alert> alerts = getAlerts();
         List<WeatherData> alertsToNotify = new ArrayList<>();
         for(int i = 0; i < alerts.size(); i++){
             String weatherCondition = alerts.get(i).getWeatherCondition();
             for(int j = 0; j < weatherDataList.size(); j++){
-                String currentWeather = weatherDataList.get(j).getDescription();
-                String forecastDate = weatherDataList.get(j).getDate();
-                if(currentWeather.contains(weatherCondition) && forecastDate.contains(dateAsString)){
+                String forecastWeather = weatherDataList.get(j).getDescription();
+                if(forecastWeather.contains(weatherCondition)){
                     alertsToNotify.add(weatherDataList.get(j));
                 }
             }
@@ -233,21 +231,7 @@ public class AlertIntentService extends IntentService {
     }
 
 
-    private Locality fetchLocationData(String lastLocation){
-       Locality locality = new Select()
-                .from(Locality.class)
-                .where("name = ?", lastLocation)
-                .executeSingle();
 
-        return locality;
-    }
-
-    private String getLastLocation() {
-        SharedPreferences preferences = PreferenceManager
-                .getDefaultSharedPreferences(getApplicationContext());
-
-        return preferences.getString(Constants.LAST_LOCATION, "");
-    }
 
 
     private boolean isDateEqual(String date){
@@ -264,11 +248,9 @@ public class AlertIntentService extends IntentService {
 
         int dayToCompare = compareDate.get(Calendar.DAY_OF_MONTH);
         int tomorrow = cal.get(Calendar.DAY_OF_MONTH);
-        int today = cal.get(Calendar.DAY_OF_MONTH) - 1;
 
 
-
-        if(today == dayToCompare || tomorrow == dayToCompare){
+        if(tomorrow == dayToCompare){
             return true;
         }
 

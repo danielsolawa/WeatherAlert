@@ -11,27 +11,133 @@
     <string name="welcome_message_content">Before you can start using application, we need to
         gather some information about you (location, trigger conditions).\nDon\'t worry! Our wizard will do the most part of it.
     </string>
+    <!-- Home activity section -->
     <string name="start_wizard">Start Wizard</string>
+    <string name="description">Description:</string>
+    <string name="pressure">Pressure:</string>
+    <string name="visibility">Visibility:</string>
+    <string name="wind_speed">Wind Speed:</string>
+
+    <!-- Wizard activity section -->
+    <string name="cloud">Cloud</string>
+    <string name="rain">Rain</string>
+    <string name="snow">Snow</string>
+    <string name="thunderstorm">Storm</string>
+    <string name="atmosphere">Atmosphere</string>
+    <string name="select_weather_type">Select weather type:</string>
+    <string name="temperature">Temperature:</string>
+    <string name="save">Save</string>
+    <string name="confirm">Confirm</string>
+    <string name="edit">Edit</string>
+    <string name="locality">Locality:</string>
+    <string name="weather_type">Weather Type:</string>
+    <string name="item_must_selected">Weather type must be selected:</string>
+    <string name="field_cant_be_empty">This field can\'t be empty:</string>
+    <string name="saved_successfully">Saved successfully!</string>
+    <string name="temperature_hint">Temperature</string>
+
+    <!-- Conditions activity section -->
+    <string name="alarms_on_off">Alarms on/off</string>
+    <string name="click_to_remove">click to remove</string>
+    <string name="add_alarm">Add alarm</string>
+
+
+    <!-- Location section-->
+    <string name="updating_location_data">Updating location...</string>
+
+    <!-- Dialogs -->
+    <string name="delete_dialog">"Do you really want to delete this alert?"</string>
+    <string name="delete_dialog_remove">"delete</string>
+    <string name="delete_dialog_cancel">"cancel"</string>
+    <string name="warning_dialog">"You need to add at least one condition to start using alarms"</string>
+
+    <!-- Notification -->
+    <string name="not_starts_at">"starts at"</string>
+
+
+    <!-- Weather conditions-->
+    <string-array name="weather_conditions">
+        <!-- thunderstorm-->
+        <item>thunderstorm with light rain</item>
+        <item>thunderstorm with rain</item>
+        <item>thunderstorm with heavy rain</item>
+        <item>light thunderstorm</item>
+        <item>heavy thunderstorm</item>
+        <item>ragged thunderstorm</item>
+        <item>thunderstorm with light drizzle</item>
+        <item>thunderstorm with drizzle</item>
+        <item>thunderstorm with heavy drizzle</item>
+
+        <!-- clouds-->
+        <item>clear sky</item>
+        <item>few clouds</item>
+        <item>scattered clouds</item>
+        <item>broken clouds</item>
+        <item>overcast clouds</item>
+
+        <!-- atmosphere -->
+        <item>mist</item>
+        <item>smoke</item>
+        <item>haze</item>
+        <item>sand, dust whirls</item>
+        <item>fog</item>
+        <item>sand</item>
+        <item>dust</item>
+        <item>volcanic ash</item>
+        <item>squalls</item>
+        <item>tornado</item>
+
+        <!-- snow -->
+        <item>light snow</item>
+        <item>snow</item>
+        <item>heavy snow</item>
+        <item>sleet</item>
+        <item>shower sleet</item>
+        <item>light rain and snow</item>
+        <item>rain and snow</item>
+        <item>light shower snow</item>
+        <item>shower snow</item>
+        <item>heavy shower snow</item>
+
+        <!-- rain -->
+        <item>light rain</item>
+        <item>moderate rain</item>
+        <item>heavy intensity rain</item>
+        <item>very heavy rain</item>
+        <item>extreme rain</item>
+        <item>freezing rain</item>
+        <item>light intensity shower rain</item>
+        <item>shower rain</item>
+        <item>heavy intensity shower rain</item>
+        <item>ragged shower rain</item>
+
+        <!-- drizzle -->
+        <item>light intensity drizzle</item>
+        <item>drizzle</item>
+        <item>heavy intensity drizzle</item>
+        <item>light intensity drizzle rain</item>
+        <item>drizzle rain</item>
+        <item>heavy intensity drizzle rain</item>
+        <item>shower rain and drizzle</item>
+        <item>heavy shower rain and drizzle</item>
+        <item>shower drizzle</item>
+
+    </string-array>
+
+
     <string-array name="weather_clouds">
         <item>clear sky</item>
         <item>clouds</item>
-    </string-array>
-    <string-array name="weather_rain">
         <item>rain</item>
-    </string-array>
-    <string-array name="weather_snow">
         <item>snow</item>
-    </string-array>
-    <string-array name="weather_thunderstorm">
         <item>thunderstorm</item>
-    </string-array>
-    <string-array name="weather_atmosphere">
         <item>mist</item>
         <item>smoke</item>
         <item>haze</item>
         <item>fog</item>
         <item>tornado</item>
     </string-array>
+
     <string name="title_activity_home">HomeActivity</string>
 
 </resources>

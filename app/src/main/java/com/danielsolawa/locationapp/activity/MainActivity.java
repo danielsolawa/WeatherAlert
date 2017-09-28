@@ -1,16 +1,13 @@
 package com.danielsolawa.locationapp.activity;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.danielsolawa.locationapp.R;
-import com.danielsolawa.locationapp.utils.Constants;
+import com.danielsolawa.locationapp.utils.Localization;
 
 public class MainActivity extends FragmentActivity {
 
@@ -33,9 +30,9 @@ public class MainActivity extends FragmentActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), WizardActivity.class);
-                finish();
-                startActivity(intent);
+                Localization loc = new Localization(getApplicationContext());
+                String localizedString = loc.localizeWeatherDataString("clear sky");
+                Log.d(TAG, localizedString);
             }
         });
 

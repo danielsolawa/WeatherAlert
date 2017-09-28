@@ -6,6 +6,7 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
+import com.danielsolawa.locationapp.R;
 import com.danielsolawa.locationapp.activity.ConditionsActivity;
 
 /**
@@ -22,14 +23,15 @@ public class DeleteDialog extends DialogFragment {
         final long id = getArguments().getLong("ALERT_ID");
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage("Do you really want to delete this alert?")
-                .setPositiveButton("delete", new DialogInterface.OnClickListener() {
+        builder.setMessage(getString(R.string.delete_dialog))
+                .setPositiveButton(getString(R.string.delete_dialog_remove), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 activity.delete(id);
             }
         })
-                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton(getString(R.string.delete_dialog_cancel),
+                        new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 

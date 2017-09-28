@@ -25,11 +25,28 @@
         tools:layout_constraintTop_creator="1">
 
 
-        <Button
-            android:id="@+id/add_alert_btn"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add Alert" />
+            android:orientation="vertical">
+
+            <Switch
+                android:id="@+id/alarm_switch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/alarms_on_off"
+                android:textSize="20dp"
+                android:textAlignment="center" />
+
+            <Button
+                android:id="@+id/add_alert_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/add_alarm" />
+
+        </LinearLayout>
 
         <ListView
             android:id="@+id/conditions_lv"

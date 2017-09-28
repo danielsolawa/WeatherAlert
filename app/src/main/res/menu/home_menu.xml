@@ -6,10 +6,13 @@
     <item
         android:id="@+id/action_update"
         android:orderInCategory="100"
-        android:title="Update Location" />
+        android:title="Update Location"
+        android:icon="@drawable/refresh"
+        app:showAsAction="always"/>
     <item
         android:id="@+id/show_condition"
         android:orderInCategory="100"
+        android:icon="@drawable/alarm"
         android:title="Manage Alerts"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
     </menu>
