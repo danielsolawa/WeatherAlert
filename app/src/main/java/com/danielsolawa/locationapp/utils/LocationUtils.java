@@ -40,8 +40,9 @@ import com.google.android.gms.tasks.Task;
 public class LocationUtils {
 
     private static final String TAG = LocationUtils.class.getSimpleName();
-    private static final int MY_PERMISSIONS_REQUEST_FINE_LOCATION = 1;
+    public static final int MY_PERMISSIONS_REQUEST_FINE_LOCATION = 1;
     private static final int REQUEST_CHECK_SETTINGS = 0x1;
+    private boolean isPermissionGranted = true;
 
     private Activity activity;
     private LocationResultHandler locationResultHandler;
@@ -59,6 +60,7 @@ public class LocationUtils {
         this.locationResultHandler = locationResultHandler;
 
         checkLocationPermission();
+        checkLocationSettings();
         initialize();
 
     }
@@ -93,17 +95,12 @@ public class LocationUtils {
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
 
-            // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(activity,
                     Manifest.permission.ACCESS_FINE_LOCATION)) {
 
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
 
             } else {
 
-                // No explanation needed, we can request the permission.
 
                 ActivityCompat.requestPermissions(activity,
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
@@ -158,7 +155,7 @@ public class LocationUtils {
 
 
     }
-
+ /*
     public void fetchLastLocation() throws SecurityException{
 
         client.getLastLocation().addOnSuccessListener(activity, new OnSuccessListener<Location>() {
@@ -184,7 +181,7 @@ public class LocationUtils {
             }
         });
 
-    }
+    }*/
 
     public void updateLocation() throws SecurityException{
         client.requestLocationUpdates(locationRequest,

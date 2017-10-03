@@ -1,6 +1,7 @@
 package com.danielsolawa.locationapp.activity;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -170,7 +171,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
-        locationUtils.updateLocation();
+
     }
 
 
@@ -330,22 +331,7 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == RESULT_OK){
-            /*Toast.makeText(getApplicationContext(), "Fetching location data...", Toast.LENGTH_LONG)
-                    .show();
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    recreate();
-                }
-            }, 3000);
-        */
-        }
-    }
+
 
     private String formatVisibility(double visibility) {
         DecimalFormat dc = new DecimalFormat("###.##");
@@ -360,6 +346,25 @@ public class HomeActivity extends AppCompatActivity {
 
         return dc.format(convertedSpeed);
     }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+
+        switch(requestCode){
+            case LocationUtils.MY_PERMISSIONS_REQUEST_FINE_LOCATION: {
+                if(grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    locationUtils.updateLocation();
+                }else{
+                    finishAndRemoveTask();
+                }
+                return;
+            }
+        }
+    }
+
 
 
     public void createToast(){
