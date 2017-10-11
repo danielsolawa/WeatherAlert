@@ -61,7 +61,7 @@ public class HomeActivity extends AppCompatActivity {
     private TextView visibilityTv;
     private TextView windSpeedTv;
     private TextView dateTv;
-
+    private Locality lastLocation;
 
 
     @Override
@@ -97,9 +97,9 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void fetchLastLocation() {
-            Locality locality = application.loadLastLocationFromPreferences();
-            if(locality != null){
-                fetchCurrentWeather(locality);
+        lastLocation = application.loadLastLocationFromPreferences();
+            if(lastLocation != null){
+                fetchCurrentWeather(lastLocation);
             }else{
                 getCurrentLocation();
             }
@@ -169,6 +169,13 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
+
+
+        if(lastLocation != null){
+            locationUtils.updateLocation();
+        }
+
+
 
 
 
