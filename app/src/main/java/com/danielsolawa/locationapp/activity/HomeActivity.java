@@ -97,6 +97,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void fetchLastLocation() {
+
         lastLocation = application.loadLastLocationFromPreferences();
             if(lastLocation != null){
                 fetchCurrentWeather(lastLocation);
@@ -146,6 +147,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
     private void getCurrentLocation() {
+        Log.d(TAG, "locality -----> get curr" );
         locationUtils = new LocationUtils(this, new LocationResultHandler() {
             @Override
             public void handleLocationResult(String msg, LocationInfo locationInfo) {
@@ -155,6 +157,8 @@ public class HomeActivity extends AppCompatActivity {
                 locality.setLongitude(locationInfo.getLongitude());
 
                 application.saveLastLocation(locality);
+
+
 
                 createToast();
 
@@ -171,9 +175,8 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
-        if(lastLocation != null){
-            locationUtils.updateLocation();
-        }
+        locationUtils.updateLocation();
+
 
 
 

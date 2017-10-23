@@ -212,6 +212,8 @@ public class LocationUtils {
            stopLocationUpdates();
             String addressOutPut = resultData.getString(Constants.RESULT_DATA_KEY);
             LocationInfo locationInfo = resultData.getParcelable(Constants.RESULT_DATA_OBJECT);
+
+            Log.d(TAG, "->>>>>>>>>>>>>>>>>>>>>>>> location");
             if(locationInfo != null)
                 locationResultHandler.handleLocationResult(addressOutPut, locationInfo);
 
