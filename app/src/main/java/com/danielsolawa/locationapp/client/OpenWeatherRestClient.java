@@ -15,7 +15,10 @@ public class OpenWeatherRestClient {
     }
 
     private static final String BASE_URL = "http://api.openweathermap.org/data/2.5/";
-    private static final String API_KEY = "c8c79f860985aba5303cb0fd699af32c";
+    /*
+     * To obtain api key, register at http://openweathermap.org 
+     */
+    private static final String API_KEY = "";
 
     private static AsyncHttpClient client = new AsyncHttpClient();
     private static AsyncHttpClient syncClient = new SyncHttpClient();

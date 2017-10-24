@@ -109,8 +109,6 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.home_menu, menu);
@@ -147,7 +145,6 @@ public class HomeActivity extends AppCompatActivity {
 
 
     private void getCurrentLocation() {
-        Log.d(TAG, "locality -----> get curr" );
         locationUtils = new LocationUtils(this, new LocationResultHandler() {
             @Override
             public void handleLocationResult(String msg, LocationInfo locationInfo) {
@@ -176,11 +173,6 @@ public class HomeActivity extends AppCompatActivity {
 
 
         locationUtils.updateLocation();
-
-
-
-
-
 
     }
 
