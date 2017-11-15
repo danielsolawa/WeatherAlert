@@ -145,6 +145,8 @@ public class HomeActivity extends AppCompatActivity {
 
 
     private void getCurrentLocation() {
+
+
         locationUtils = new LocationUtils(this, new LocationResultHandler() {
             @Override
             public void handleLocationResult(String msg, LocationInfo locationInfo) {
@@ -163,6 +165,7 @@ public class HomeActivity extends AppCompatActivity {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+
                         recreate();
                     }
                 }, 2000);
@@ -172,7 +175,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
-        //locationUtils.updateLocation();
+
 
     }
 
@@ -181,6 +184,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
     private void fetchCurrentWeather(final Locality locality) {
+
         String url = OpenWeatherRestClient.generateUrl(locality.getLatitude(),
                 locality.getLongitude(), OpenWeatherRestClient.QueryType.weather);
 
@@ -240,6 +244,10 @@ public class HomeActivity extends AppCompatActivity {
             }
 
 
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                Toast.makeText(getApplicationContext(), "Failure " + statusCode, Toast.LENGTH_LONG).show();
+            }
         });
 
     }
@@ -302,7 +310,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onFailure(int statusCode, Header[] headers,
                                   Throwable throwable, JSONObject errorResponse) {
-                Log.d(TAG, "failure ");
+
             }
         });
 
