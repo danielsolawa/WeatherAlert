@@ -172,7 +172,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
-        locationUtils.updateLocation();
+        //locationUtils.updateLocation();
 
     }
 

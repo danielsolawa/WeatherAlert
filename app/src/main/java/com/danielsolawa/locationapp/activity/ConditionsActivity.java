@@ -95,12 +95,7 @@ public class ConditionsActivity extends AppCompatActivity {
         alerts = new ArrayList<>();
 
 
-        alarmManager = (AlarmManager)
-                getApplicationContext().getSystemService(Context.ALARM_SERVICE);
 
-        Intent alarmIntent = new Intent(getApplicationContext(), AlertIntentService.class);
-        pendingAlarmIntent = PendingIntent.getService(getApplicationContext(),
-                0, alarmIntent, 0);
     }
 
     private void fetchAlerts() {
@@ -160,11 +155,20 @@ public class ConditionsActivity extends AppCompatActivity {
         conditionsListView.setAdapter(adapter);
     }
 
+    private void initializeAlarmManager(){
+        alarmManager = (AlarmManager)
+                getApplicationContext().getSystemService(Context.ALARM_SERVICE);
 
+        Intent alarmIntent = new Intent(getApplicationContext(), AlertIntentService.class);
+        pendingAlarmIntent = PendingIntent.getService(getApplicationContext(),
+                0, alarmIntent, 0);
+    }
 
     private void startAlarmManager() {
         if(alerts.size() > 0){
             setAlarmState(true);
+            initializeAlarmManager();
+
             alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                     SystemClock.elapsedRealtime() + Constants.THIRTY_SECONDS,
                     Constants.SIX_HOURS,
