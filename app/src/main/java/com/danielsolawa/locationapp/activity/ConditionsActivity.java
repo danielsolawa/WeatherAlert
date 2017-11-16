@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -160,6 +161,7 @@ public class ConditionsActivity extends AppCompatActivity {
                 getApplicationContext().getSystemService(Context.ALARM_SERVICE);
 
         Intent alarmIntent = new Intent(getApplicationContext(), AlertIntentService.class);
+
         pendingAlarmIntent = PendingIntent.getService(getApplicationContext(),
                 0, alarmIntent, 0);
     }
