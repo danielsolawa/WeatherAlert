@@ -55,6 +55,8 @@ public class AlertIntentService extends IntentService {
         super(TAG);
     }
 
+
+
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
         initCalendar();
