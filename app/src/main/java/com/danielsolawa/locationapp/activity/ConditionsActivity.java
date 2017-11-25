@@ -3,6 +3,7 @@ package com.danielsolawa.locationapp.activity;
 import android.app.AlarmManager;
 import android.app.DialogFragment;
 import android.app.PendingIntent;
+import android.app.Service;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -30,6 +31,7 @@ import com.danielsolawa.locationapp.dialog.WarningDialog;
 import com.danielsolawa.locationapp.model.Alert;
 import com.danielsolawa.locationapp.model.Locality;
 import com.danielsolawa.locationapp.service.AlertIntentService;
+import com.danielsolawa.locationapp.utils.AlarmReceiver;
 import com.danielsolawa.locationapp.utils.BootReceiver;
 import com.danielsolawa.locationapp.utils.Constants;
 import com.danielsolawa.locationapp.utils.Localization;
@@ -66,6 +68,7 @@ public class ConditionsActivity extends AppCompatActivity {
 
     private void initialize() {
         WeatherApp app = (WeatherApp) getApplication();
+        initializeAlarmManager();
         localization = app.getLocalization();
         alarmSwitch = (Switch) findViewById(R.id.alarm_switch);
         alarmSwitch.setChecked(getAlarmState());
@@ -157,19 +160,18 @@ public class ConditionsActivity extends AppCompatActivity {
     }
 
     private void initializeAlarmManager(){
-        alarmManager = (AlarmManager)
-                getApplicationContext().getSystemService(Context.ALARM_SERVICE);
+        alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-        Intent alarmIntent = new Intent(getApplicationContext(), AlertIntentService.class);
+        Intent alarmIntent = new Intent(ConditionsActivity.this, AlarmReceiver.class);
 
-        pendingAlarmIntent = PendingIntent.getService(getApplicationContext(),
+        pendingAlarmIntent = PendingIntent.getService(ConditionsActivity.this,
                 0, alarmIntent, 0);
     }
 
     private void startAlarmManager() {
         if(alerts.size() > 0){
             setAlarmState(true);
-            initializeAlarmManager();
+
 
             alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                     SystemClock.elapsedRealtime() + Constants.THIRTY_SECONDS,
