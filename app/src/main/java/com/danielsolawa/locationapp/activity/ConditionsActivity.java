@@ -165,9 +165,9 @@ public class ConditionsActivity extends AppCompatActivity {
     private void initializeAlarmManager(){
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-        Intent alarmIntent = new Intent(ConditionsActivity.this, AlarmReceiver.class);
+        Intent alarmIntent = new Intent(getApplicationContext(), AlarmReceiver.class);
 
-        pendingAlarmIntent = PendingIntent.getBroadcast(ConditionsActivity.this,
+        pendingAlarmIntent = PendingIntent.getBroadcast(getApplicationContext(),
                 0, alarmIntent, 0);
     }
 

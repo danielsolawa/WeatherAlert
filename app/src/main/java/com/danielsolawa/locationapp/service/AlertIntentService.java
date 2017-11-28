@@ -132,7 +132,7 @@ public class AlertIntentService extends IntentService {
                     Calendar alertDate = Calendar.getInstance();
                     alertDate.setTime(new Date());
                     alertDate.add(Calendar.HOUR_OF_DAY, 6);
-                    app.saveAlertDate(String.valueOf(alertDate));
+                    app.saveAlertDate(String.valueOf(alertDate.getTime()));
 
 
                     WeatherData weatherData =
