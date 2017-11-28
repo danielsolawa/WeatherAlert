@@ -19,7 +19,7 @@ public class AlarmReceiver extends WakefulBroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.d(TAG, "-------------------------> Receiver");
+
         ComponentName comp = new ComponentName(context.getPackageName(),
                 AlertIntentService.class.getName());
         intent.setComponent(comp);

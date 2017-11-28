@@ -34,6 +34,22 @@ public class WeatherApp extends Application {
         return getLocality(lastLocation);
     }
 
+    public String getNextAlertDate(){
+        SharedPreferences preferences =
+                PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String date = preferences.getString("ALERT_DATE", "");
+
+        return date;
+    }
+
+    public void saveAlertDate(String date){
+        SharedPreferences preferences =
+                PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("ALERT_DATE", date);
+        editor.apply();
+    }
+
     public void saveLastLocation(Locality localityToSave){
         SharedPreferences preferences =
                 PreferenceManager.getDefaultSharedPreferences(getApplicationContext());

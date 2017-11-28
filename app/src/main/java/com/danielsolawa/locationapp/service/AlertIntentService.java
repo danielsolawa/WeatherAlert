@@ -32,6 +32,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -124,10 +125,15 @@ public class AlertIntentService extends IntentService {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.d(TAG, "matching conditions..");
+
                 List<WeatherData> fullFilledConditions =  matchConditions(weatherDataList);
 
                 if(fullFilledConditions.size() > 0){
+                    Calendar alertDate = Calendar.getInstance();
+                    alertDate.setTime(new Date());
+                    alertDate.add(Calendar.HOUR_OF_DAY, 6);
+                    app.saveAlertDate(String.valueOf(alertDate));
+
 
                     WeatherData weatherData =
                             AlertPriority.getHighestPriorityCondition(fullFilledConditions);
