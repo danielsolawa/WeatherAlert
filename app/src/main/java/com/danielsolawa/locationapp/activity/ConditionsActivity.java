@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.activeandroid.query.Select;
 import com.danielsolawa.locationapp.R;
@@ -52,6 +53,7 @@ public class ConditionsActivity extends AppCompatActivity {
     private ListView conditionsListView;
     private Switch alarmSwitch;
     private Button addAlertButton;
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +85,7 @@ public class ConditionsActivity extends AppCompatActivity {
 
             }
         });
-
+        textView = (TextView) findViewById(R.id.alertDate);
         addAlertButton = (Button) findViewById(R.id.add_alert_btn);
         addAlertButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +100,8 @@ public class ConditionsActivity extends AppCompatActivity {
 
         alerts = new ArrayList<>();
 
-
+        String nextAlertDate = app.getNextAlertDate();
+        textView.setText(nextAlertDate);
 
     }
 
