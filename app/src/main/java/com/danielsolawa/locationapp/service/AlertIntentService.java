@@ -51,6 +51,7 @@ public class AlertIntentService extends IntentService {
     private String dateAsString;
     private Locality locality;
     private Localization loc;
+    private List<Alert> alerts;
 
     public AlertIntentService() {
         super(TAG);
@@ -66,6 +67,7 @@ public class AlertIntentService extends IntentService {
                 locality.getLongitude(),
                 OpenWeatherRestClient.QueryType.forecast);
         fetchForecast(url);
+        alerts = getAlerts();
 
 
     }
@@ -128,12 +130,12 @@ public class AlertIntentService extends IntentService {
 
                 List<WeatherData> fullFilledConditions =  matchConditions(weatherDataList);
 
-                if(fullFilledConditions.size() > 0){
-                    Calendar alertDate = Calendar.getInstance();
-                    alertDate.setTime(new Date());
-                    alertDate.add(Calendar.HOUR_OF_DAY, 6);
-                    app.saveAlertDate(String.valueOf(alertDate.getTime()));
+                Calendar alertDate = Calendar.getInstance();
+                alertDate.setTime(new Date());
+                alertDate.add(Calendar.HOUR_OF_DAY, 6);
+                app.saveAlertDate(String.valueOf(alertDate.getTime()));
 
+                if(fullFilledConditions.size() > 0){
 
                     WeatherData weatherData =
                             AlertPriority.getHighestPriorityCondition(fullFilledConditions);
@@ -212,7 +214,6 @@ public class AlertIntentService extends IntentService {
 
 
     private List<WeatherData> matchConditions(List<WeatherData> weatherDataList) {
-        List<Alert> alerts = getAlerts();
         List<WeatherData> alertsToNotify = new ArrayList<>();
         for(int i = 0; i < alerts.size(); i++){
             String weatherCondition = alerts.get(i).getWeatherCondition();
