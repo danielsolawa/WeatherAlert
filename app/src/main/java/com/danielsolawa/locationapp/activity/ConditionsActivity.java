@@ -176,7 +176,7 @@ public class ConditionsActivity extends AppCompatActivity {
             setAlarmState(true);
 
 
-            alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+            alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME,
                     SystemClock.elapsedRealtime() + Constants.THIRTY_SECONDS,
                     Constants.SIX_HOURS,
                     pendingAlarmIntent);
