@@ -175,11 +175,11 @@ public class ConditionsActivity extends AppCompatActivity {
         if(alerts.size() > 0){
             setAlarmState(true);
 
-
+            /*
             alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME,
                     SystemClock.elapsedRealtime() + Constants.THIRTY_SECONDS,
                     Constants.SIX_HOURS,
-                    pendingAlarmIntent);
+                    pendingAlarmIntent);*/
 
             enableReceiver();
         }else{
@@ -196,10 +196,11 @@ public class ConditionsActivity extends AppCompatActivity {
 
     private void stopAlarmManager(){
         setAlarmState(false);
-        if(alarmManager != null){
+        disableReceiver();
+       /* if(alarmManager != null){
             alarmManager.cancel(pendingAlarmIntent);
-            disableReceiver();
-        }
+
+        }*/
     }
 
 
