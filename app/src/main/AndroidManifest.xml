@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
+
     <application
         android:name=".WeatherApp"
         android:allowBackup="true"
@@ -31,6 +32,13 @@
             android:exported="false" />
         <service android:name=".service.AlertIntentService"
             android:enabled="true"/>
+        <service
+            android:name=".service.AlertJobService"
+            android:label="AlertService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            />
+
+
         <receiver android:name=".utils.BootReceiver"
             android:enabled="false">
             <intent-filter>

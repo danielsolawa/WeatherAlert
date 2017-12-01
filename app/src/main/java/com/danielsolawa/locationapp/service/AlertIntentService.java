@@ -160,7 +160,6 @@ public class AlertIntentService extends IntentService {
 
 
     private void sendNotification(WeatherData weatherData) {
-        Log.d(TAG, "sending notifications");
 
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(NOTIFICATION_SERVICE);

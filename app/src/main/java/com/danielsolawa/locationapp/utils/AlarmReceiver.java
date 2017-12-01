@@ -19,12 +19,14 @@ public class AlarmReceiver extends WakefulBroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        AlertUtils.scheduleJob(context);
 
+        /*
         ComponentName comp = new ComponentName(context.getPackageName(),
                 AlertIntentService.class.getName());
         intent.setComponent(comp);
 
         startWakefulService(context, (intent.setComponent(comp)));
-        setResultCode(Activity.RESULT_OK);
+        setResultCode(Activity.RESULT_OK);*/
     }
 }
