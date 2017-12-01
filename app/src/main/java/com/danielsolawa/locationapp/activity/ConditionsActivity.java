@@ -33,6 +33,7 @@ import com.danielsolawa.locationapp.model.Alert;
 import com.danielsolawa.locationapp.model.Locality;
 import com.danielsolawa.locationapp.service.AlertIntentService;
 import com.danielsolawa.locationapp.utils.AlarmReceiver;
+import com.danielsolawa.locationapp.utils.AlertUtils;
 import com.danielsolawa.locationapp.utils.BootReceiver;
 import com.danielsolawa.locationapp.utils.Constants;
 import com.danielsolawa.locationapp.utils.Localization;
@@ -70,7 +71,7 @@ public class ConditionsActivity extends AppCompatActivity {
 
     private void initialize() {
         WeatherApp app = (WeatherApp) getApplication();
-        initializeAlarmManager();
+        initJobScheduler();
         localization = app.getLocalization();
         alarmSwitch = (Switch) findViewById(R.id.alarm_switch);
         alarmSwitch.setChecked(getAlarmState());
@@ -162,26 +163,17 @@ public class ConditionsActivity extends AppCompatActivity {
         conditionsListView.setAdapter(adapter);
     }
 
-    private void initializeAlarmManager(){
-        alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-
-        Intent alarmIntent = new Intent(getApplicationContext(), AlarmReceiver.class);
-
-        pendingAlarmIntent = PendingIntent.getBroadcast(getApplicationContext(),
-                0, alarmIntent, 0);
+    private void initJobScheduler(){
+        AlertUtils.init(getApplicationContext());
     }
 
     private void startAlarmManager() {
         if(alerts.size() > 0){
             setAlarmState(true);
+            AlertUtils.scheduleJob();
 
-            /*
-            alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME,
-                    SystemClock.elapsedRealtime() + Constants.THIRTY_SECONDS,
-                    Constants.SIX_HOURS,
-                    pendingAlarmIntent);*/
 
-            enableReceiver();
+
         }else{
             alarmSwitch.setChecked(false);
             setAlarmState(false);
@@ -196,11 +188,8 @@ public class ConditionsActivity extends AppCompatActivity {
 
     private void stopAlarmManager(){
         setAlarmState(false);
-        disableReceiver();
-       /* if(alarmManager != null){
-            alarmManager.cancel(pendingAlarmIntent);
+        //disableReceiver();
 
-        }*/
     }
 
 
