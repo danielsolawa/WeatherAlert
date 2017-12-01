@@ -63,11 +63,12 @@ public class AlertIntentService extends IntentService {
     protected void onHandleIntent(@Nullable Intent intent) {
         initCalendar();
         initLocation();
+        alerts = getAlerts();
         String url = OpenWeatherRestClient.generateUrl(locality.getLatitude(),
                 locality.getLongitude(),
                 OpenWeatherRestClient.QueryType.forecast);
         fetchForecast(url);
-        alerts = getAlerts();
+
 
 
     }
