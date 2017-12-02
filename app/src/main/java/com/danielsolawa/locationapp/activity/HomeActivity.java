@@ -24,6 +24,7 @@ import com.danielsolawa.locationapp.client.OpenWeatherRestClient;
 import com.danielsolawa.locationapp.model.Locality;
 import com.danielsolawa.locationapp.model.LocationInfo;
 import com.danielsolawa.locationapp.model.WeatherData;
+import com.danielsolawa.locationapp.utils.AppManager;
 import com.danielsolawa.locationapp.utils.Constants;
 import com.danielsolawa.locationapp.utils.DateUtils;
 import com.danielsolawa.locationapp.utils.Localization;
@@ -49,6 +50,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private LocationUtils locationUtils;
     private WeatherApp application;
+    private AppManager appManager;
 
     //views
     private LinearLayout progressLayout;
@@ -77,6 +79,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
     private void initialize() {
+        appManager = AppManager.getInstance(getApplicationContext());
         application = (WeatherApp) getApplication();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -98,7 +101,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private void fetchLastLocation() {
 
-        lastLocation = application.loadLastLocationFromPreferences();
+        lastLocation = appManager.loadLastLocationFromPreferences();
+        //lastLocation = application.loadLastLocationFromPreferences();
             if(lastLocation != null){
                 fetchCurrentWeather(lastLocation);
             }else{
@@ -155,7 +159,7 @@ public class HomeActivity extends AppCompatActivity {
                 locality.setLatitude(locationInfo.getLatitude());
                 locality.setLongitude(locationInfo.getLongitude());
 
-                application.saveLastLocation(locality);
+                appManager.saveLastLocation(locality);
 
 
 

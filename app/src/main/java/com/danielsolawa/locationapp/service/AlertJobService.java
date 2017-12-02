@@ -20,6 +20,7 @@ import com.danielsolawa.locationapp.model.Alert;
 import com.danielsolawa.locationapp.model.Locality;
 import com.danielsolawa.locationapp.model.WeatherData;
 import com.danielsolawa.locationapp.utils.AlertPriority;
+import com.danielsolawa.locationapp.utils.AppManager;
 import com.danielsolawa.locationapp.utils.DateUtils;
 import com.danielsolawa.locationapp.utils.Localization;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -62,12 +63,11 @@ public class AlertJobService extends JobService implements Runnable{
     private static final String DAY = "d";
 
 
-    private WeatherApp weatherApp;
+    private AppManager appManager;
     private Calendar cal;
     private Locality locality;
     private Localization localization;
     private List<Alert> alerts;
-
     private JobParameters params;
 
 
@@ -83,9 +83,9 @@ public class AlertJobService extends JobService implements Runnable{
     }
 
     private void initialize() {
-        weatherApp = (WeatherApp) getApplication();
-        localization = new Localization(getApplicationContext());
-        locality = weatherApp.loadLastLocationFromPreferences();
+        appManager = AppManager.getInstance(getApplicationContext());
+        localization = appManager.getLocalization();
+        locality = appManager.loadLastLocationFromPreferences();
         alerts = getAlerts();
 
 
