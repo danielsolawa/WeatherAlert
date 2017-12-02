@@ -67,6 +67,8 @@ public final class AppManager {
     }
 
 
+
+
     // Getters & Setters
     public Localization getLocalization() {
         return localization;
