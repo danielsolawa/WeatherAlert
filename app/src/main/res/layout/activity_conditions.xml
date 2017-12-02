@@ -32,12 +32,13 @@
 
             <Switch
                 android:id="@+id/alarm_switch"
+                style="@android:style/Widget.Holo.Light.CompoundButton.Switch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/alarms_on_off"
-                android:textSize="20dp"
-                android:textAlignment="center" />
+                android:textAlignment="textStart"
+                android:textSize="20dp" />
 
             <Button
                 android:id="@+id/add_alert_btn"
@@ -46,12 +47,7 @@
                 android:layout_weight="1"
                 android:text="@string/add_alarm" />
 
-            <TextView
-                android:id="@+id/alertDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TextView" />
+
 
         </LinearLayout>
 

@@ -13,7 +13,6 @@ import android.util.Log;
 
 import com.activeandroid.query.Select;
 import com.danielsolawa.locationapp.R;
-import com.danielsolawa.locationapp.WeatherApp;
 import com.danielsolawa.locationapp.activity.HomeActivity;
 import com.danielsolawa.locationapp.client.OpenWeatherRestClient;
 import com.danielsolawa.locationapp.model.Alert;

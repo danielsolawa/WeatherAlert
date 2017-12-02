@@ -1,8 +1,6 @@
 package com.danielsolawa.locationapp.activity;
 
-import android.app.AlarmManager;
 import android.app.DialogFragment;
-import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,7 +18,6 @@ import android.widget.TextView;
 
 import com.activeandroid.query.Select;
 import com.danielsolawa.locationapp.R;
-import com.danielsolawa.locationapp.WeatherApp;
 import com.danielsolawa.locationapp.adapter.ConditionsAdapter;
 import com.danielsolawa.locationapp.adapter.RowClicker;
 import com.danielsolawa.locationapp.dialog.DeleteDialog;
@@ -47,7 +44,6 @@ public class ConditionsActivity extends AppCompatActivity {
     private ListView conditionsListView;
     private Switch alarmSwitch;
     private Button addAlertButton;
-    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +75,7 @@ public class ConditionsActivity extends AppCompatActivity {
 
             }
         });
-        textView = (TextView) findViewById(R.id.alertDate);
+
         addAlertButton = (Button) findViewById(R.id.add_alert_btn);
         addAlertButton.setOnClickListener(new View.OnClickListener() {
             @Override
