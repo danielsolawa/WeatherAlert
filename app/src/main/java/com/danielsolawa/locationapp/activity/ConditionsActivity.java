@@ -175,6 +175,7 @@ public class ConditionsActivity extends AppCompatActivity {
 
 
     private void stopAlarmManager(){
+        AlertUtils.stopJob();
         setAlarmState(false);
         disableReceiver();
 

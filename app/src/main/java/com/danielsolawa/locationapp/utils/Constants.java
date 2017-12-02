@@ -6,7 +6,7 @@ package com.danielsolawa.locationapp.utils;
 
 public final class Constants {
 
-    public static final int THIRTY_SECONDS = 1000 * 30;
+    public static final int THREE_HOURS = 1000 * 60 * 60 * 3;
     public static final int SIX_HOURS = 1000 * 60 * 60 * 6;
     public static final int SUCCESS_RESULT = 0;
     public static final int FAILURE_RESULT = 1;

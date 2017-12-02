@@ -33,7 +33,7 @@ public class AlertUtils {
                 new JobInfo.Builder(JOB_ID, componentName);
         builder.setPersisted(true);
         builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
-        builder.setPeriodic(Constants.SIX_HOURS);
+        builder.setPeriodic(Constants.THREE_HOURS);
         builder.setRequiresDeviceIdle(false);
         builder.setRequiresCharging(false);
 
