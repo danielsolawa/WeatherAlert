@@ -32,7 +32,6 @@
 
             <Switch
                 android:id="@+id/alarm_switch"
-                style="@android:style/Widget.Holo.Light.CompoundButton.Switch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

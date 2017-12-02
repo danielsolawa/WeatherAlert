@@ -21,6 +21,7 @@ import com.danielsolawa.locationapp.R;
 import com.danielsolawa.locationapp.WeatherApp;
 import com.danielsolawa.locationapp.model.Alert;
 import com.danielsolawa.locationapp.model.Locality;
+import com.danielsolawa.locationapp.utils.AppManager;
 import com.danielsolawa.locationapp.utils.Localization;
 
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class WizardActivity extends FragmentActivity implements View.OnClickList
     //constants
     private static final String TAG = WizardActivity.class.getSimpleName();
 
-    private WeatherApp app;
+    private AppManager appManager;
     private Locality locality;
     private Localization loc;
 
@@ -65,8 +66,8 @@ public class WizardActivity extends FragmentActivity implements View.OnClickList
 
 
     private void initialize() {
-        app = (WeatherApp) getApplication();
-        locality = app.loadLastLocationFromPreferences();
+        appManager = AppManager.getInstance(getApplicationContext());
+        locality = appManager.loadLastLocationFromPreferences();
 
         addLayout = (LinearLayout) findViewById(R.id.add_layout);
         confirmLayout = (LinearLayout) findViewById(R.id.confirm_layout);
@@ -82,7 +83,7 @@ public class WizardActivity extends FragmentActivity implements View.OnClickList
         confirmButton.setOnClickListener(this);
         editButton.setOnClickListener(this);
 
-        loc = app.getLocalization();
+        loc = appManager.getLocalization();
 
 
         spinner = (Spinner) findViewById(R.id.weather_spinner);
