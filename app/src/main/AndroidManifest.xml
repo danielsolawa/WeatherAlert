@@ -30,8 +30,6 @@
         <service
             android:name=".service.FetchAddressIntentService"
             android:exported="false" />
-        <service android:name=".service.AlertIntentService"
-            android:enabled="true"/>
         <service
             android:name=".service.AlertJobService"
             android:label="AlertService"

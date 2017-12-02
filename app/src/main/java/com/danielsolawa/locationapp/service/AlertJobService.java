@@ -88,6 +88,7 @@ public class AlertJobService extends JobService implements Runnable{
         locality = weatherApp.loadLastLocationFromPreferences();
         alerts = getAlerts();
 
+
         setupCalendar();
     }
 
@@ -112,9 +113,15 @@ public class AlertJobService extends JobService implements Runnable{
     }
 
     private void fetchForecast() {
+        if(alerts.size() <= 0)
+            return;
+
+
+
         String url = OpenWeatherRestClient.generateUrl(locality.getLatitude(),
                 locality.getLongitude(),
                 OpenWeatherRestClient.QueryType.forecast);
+
 
         OpenWeatherRestClient.getSynchronous(url, null, new JsonHttpResponseHandler(){
             @Override
