@@ -7,6 +7,8 @@ import android.preference.PreferenceManager;
 import com.activeandroid.query.Select;
 import com.danielsolawa.locationapp.model.Locality;
 
+import static com.danielsolawa.locationapp.utils.Constants.CURRENT_INTERVAL;
+
 /**
  * Created by NeverForgive on 2017-12-02.
  */
@@ -66,6 +68,19 @@ public final class AppManager {
         }
 
 
+    }
+
+    public int getCurrentIntervalIndex(){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
+        int currentIntervalIndex = preferences.getInt(CURRENT_INTERVAL, 3);
+
+        return currentIntervalIndex;
+    }
+
+    public int getCurrentIntervalInMillis(){
+        int currentIntervalIndex = getCurrentIntervalIndex();
+
+        return intervals[currentIntervalIndex];
     }
 
     public Locality loadLastLocationFromPreferences(){

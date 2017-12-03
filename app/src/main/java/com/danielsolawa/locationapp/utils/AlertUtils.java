@@ -20,20 +20,23 @@ public class AlertUtils {
 
     private static  JobScheduler jobScheduler;
     private static Context ctx;
+    private static AppManager appManager;
 
     public static void init(Context ctx){
         AlertUtils.ctx = ctx;
         jobScheduler = (JobScheduler) ctx.getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        appManager = AppManager.getInstance(ctx);
     }
 
 
     public static void scheduleJob(){
+        int currentInterval  = appManager.getCurrentIntervalInMillis();
         ComponentName componentName = new ComponentName(ctx, AlertJobService.class);
         JobInfo.Builder builder =
                 new JobInfo.Builder(JOB_ID, componentName);
         builder.setPersisted(true);
         builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
-        builder.setPeriodic(Constants.THREE_HOURS);
+        builder.setPeriodic(currentInterval);
         builder.setRequiresDeviceIdle(false);
         builder.setRequiresCharging(false);
 

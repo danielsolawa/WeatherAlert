@@ -13,9 +13,11 @@ import com.danielsolawa.locationapp.utils.AppManager;
 
 public class SettingsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    private static final String TAG = SettingsActivity.class.getSimpleName();
     private Spinner notificationsSpinner;
     private Button saveButton;
     private int[] intervals;
+    private int currentIntervalIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,28 +30,44 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     }
 
     private void init() {
-        notificationsSpinner = (Spinner) findViewById(R.id.interval_spinner);
-        saveButton = (Button) findViewById(R.id.save_settings);
         AppManager appManager = AppManager.getInstance(getApplicationContext());
         intervals = appManager.getIntervals();
-        setupSpinner();
 
+        notificationsSpinner = (Spinner) findViewById(R.id.interval_spinner);
+        notificationsSpinner.setOnItemSelectedListener(this);
+        setupSpinner();
+        notificationsSpinner.setSelection(appManager.getCurrentIntervalIndex());
+
+        saveButton = (Button) findViewById(R.id.save_settings);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveData();
+            }
+        });
     }
+
 
     private void setupSpinner() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.notifications_intervals, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         notificationsSpinner.setAdapter(adapter);
+
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+        currentIntervalIndex = position;
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+    private void saveData() {
+        
+    }
+
 }
