@@ -9,7 +9,7 @@
     <!-- This is the main color -->
     <item android:bottom="1dp">
         <shape>
-            <solid android:color="@color/colorWhite" />
+            <solid android:color="@color/colorLightGrey" />
 
         </shape>
     </item>
