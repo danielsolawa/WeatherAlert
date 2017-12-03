@@ -110,6 +110,25 @@ public final class AppManager {
     }
 
 
+    public boolean getAlarmState() {
+        SharedPreferences preferences =
+                PreferenceManager.getDefaultSharedPreferences(ctx);
+        boolean alarmState = preferences.getBoolean(Constants.ALARM_STATE, false);
+
+
+        return alarmState;
+    }
+
+
+    public void setAlarmState(boolean alarmState){
+        SharedPreferences preferences =
+                PreferenceManager.getDefaultSharedPreferences(ctx);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean(Constants.ALARM_STATE, alarmState);
+        editor.apply();
+    }
+
+
 
 
     // Getters & Setters

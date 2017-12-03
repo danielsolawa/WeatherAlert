@@ -44,6 +44,7 @@ public class ConditionsActivity extends AppCompatActivity {
     private ListView conditionsListView;
     private Switch alarmSwitch;
     private Button addAlertButton;
+    private AppManager appManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,11 +60,11 @@ public class ConditionsActivity extends AppCompatActivity {
     }
 
     private void initialize() {
-        AppManager appManager = AppManager.getInstance(getApplicationContext());
+        appManager = AppManager.getInstance(getApplicationContext());
         initJobScheduler();
         localization = appManager.getLocalization();
         alarmSwitch = (Switch) findViewById(R.id.alarm_switch);
-        alarmSwitch.setChecked(getAlarmState());
+        alarmSwitch.setChecked(appManager.getAlarmState());
         alarmSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -227,21 +228,7 @@ public class ConditionsActivity extends AppCompatActivity {
     }
 
 
-    private boolean getAlarmState() {
-        SharedPreferences preferences =
-                PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        boolean alarmState = preferences.getBoolean(Constants.ALARM_STATE, false);
-
-
-        return alarmState;
-    }
-
-
     private void setAlarmState(boolean alarmState){
-        SharedPreferences preferences =
-                PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putBoolean(Constants.ALARM_STATE, alarmState);
-        editor.apply();
+        appManager.setAlarmState(alarmState);
     }
 }
