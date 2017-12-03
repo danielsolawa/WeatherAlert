@@ -42,6 +42,10 @@
     <!-- Notification -->
     <string name="not_starts_at">"zacznie się"</string>
 
+    <!-- Settings -->
+    <string name="alarm_interval">Powiadomienia</string>
+    <string name="times_a_day">razy dziennie</string>
+
 
     <!-- Weather conditions-->
     <string-array name="weather_conditions">

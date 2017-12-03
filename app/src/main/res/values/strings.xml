@@ -55,6 +55,11 @@
     <string name="not_starts_at">"starts at"</string>
 
 
+    <!-- Settings -->
+    <string name="alarm_interval">Notifications</string>
+    <string name="times_a_day">times a day</string>
+
+
     <!-- Weather conditions-->
     <string-array name="weather_conditions">
         <!-- thunderstorm-->
