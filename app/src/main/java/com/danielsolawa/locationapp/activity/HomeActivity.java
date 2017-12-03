@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +17,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.danielsolawa.locationapp.R;
-import com.danielsolawa.locationapp.WeatherApp;
 import com.danielsolawa.locationapp.adapter.HorizontalListViewFragment;
 import com.danielsolawa.locationapp.client.OpenWeatherRestClient;
 import com.danielsolawa.locationapp.model.Locality;
@@ -49,7 +47,6 @@ public class HomeActivity extends AppCompatActivity {
     private static final String TAG = HomeActivity.class.getSimpleName();
 
     private LocationUtils locationUtils;
-    private WeatherApp application;
     private AppManager appManager;
 
     //views
@@ -80,7 +77,6 @@ public class HomeActivity extends AppCompatActivity {
 
     private void initialize() {
         appManager = AppManager.getInstance(getApplicationContext());
-        application = (WeatherApp) getApplication();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -102,7 +98,6 @@ public class HomeActivity extends AppCompatActivity {
     private void fetchLastLocation() {
 
         lastLocation = appManager.loadLastLocationFromPreferences();
-        //lastLocation = application.loadLastLocationFromPreferences();
             if(lastLocation != null){
                 fetchCurrentWeather(lastLocation);
             }else{
@@ -130,7 +125,9 @@ public class HomeActivity extends AppCompatActivity {
             case R.id.show_condition:
                 changeActivity(ConditionsActivity.class);
                 return true;
-
+            case R.id.show_settings:
+                changeActivity(SettingsActivity.class);
+                return true;
         }
 
 
@@ -374,7 +371,7 @@ public class HomeActivity extends AppCompatActivity {
                 }else{
                     finishAndRemoveTask();
                 }
-                return;
+
             }
         }
     }

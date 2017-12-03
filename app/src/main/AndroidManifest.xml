@@ -3,10 +3,8 @@
     package="com.danielsolawa.locationapp">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:name=".WeatherApp"
@@ -24,61 +22,53 @@
             android:value="1" />
         <meta-data
             android:name="AA_MODELS"
-            android:value="com.danielsolawa.locationapp.model.Locality,
-             com.danielsolawa.locationapp.model.Alert, com.danielsolawa.locationapp.model.WeatherData" />
+            android:value="com.danielsolawa.locationapp.model.Locality,              com.danielsolawa.locationapp.model.Alert, com.danielsolawa.locationapp.model.WeatherData" />
 
         <service
             android:name=".service.FetchAddressIntentService"
             android:exported="false" />
         <service
             android:name=".service.AlertJobService"
-            android:label="AlertService"
-            android:permission="android.permission.BIND_JOB_SERVICE"
-            android:exported="true"
             android:enabled="true"
-            />
+            android:exported="true"
+            android:label="AlertService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
 
-
-        <receiver android:name=".utils.BootReceiver"
+        <receiver
+            android:name=".utils.BootReceiver"
             android:enabled="false">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
-
-
-
         <activity
             android:name=".activity.LauncherActivity"
-            android:theme="@android:style/Theme.NoDisplay">
-
-        </activity>
-        <activity android:name=".activity.MainActivity">
-
-        </activity>
+            android:theme="@android:style/Theme.NoDisplay"></activity>
+        <activity android:name=".activity.MainActivity"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-
-        <activity android:name=".activity.WizardActivity"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity android:name=".activity.ConditionsActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.WizardActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".activity.ConditionsActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.HomeActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.SettingsActivity"></activity>
     </application>
 
 </manifest>

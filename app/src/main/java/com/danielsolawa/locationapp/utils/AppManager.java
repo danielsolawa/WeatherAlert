@@ -7,6 +7,8 @@ import android.preference.PreferenceManager;
 import com.activeandroid.query.Select;
 import com.danielsolawa.locationapp.model.Locality;
 
+import static com.danielsolawa.locationapp.utils.Constants.CURRENT_INTERVAL;
+
 /**
  * Created by NeverForgive on 2017-12-02.
  */
@@ -15,11 +17,29 @@ public final class AppManager {
 
     private static volatile AppManager instance = null;
     private Localization localization;
+    private int [] intervals;
     private Context ctx;
 
     private AppManager(Context ctx){
         this.ctx = ctx;
         localization = new Localization(ctx);
+        initIntervals();
+    }
+
+    private void initIntervals() {
+        intervals = new int[5];
+        for(int i = 0; i < intervals.length; i++){
+            if(i == 0){
+                intervals[i] = Constants.ONE_HOUR;
+                continue;
+            }
+            if(i < 4){
+                intervals[i] = (i + 1) * Constants.ONE_HOUR;
+            }else{
+                intervals[i] = (i * 3) * Constants.ONE_HOUR;
+            }
+        }
+
     }
 
     public static AppManager getInstance(Context ctx){
@@ -50,6 +70,29 @@ public final class AppManager {
 
     }
 
+    public int getCurrentIntervalIndex(){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
+        int currentIntervalIndex = preferences.getInt(CURRENT_INTERVAL, 3);
+
+        return currentIntervalIndex;
+    }
+
+
+    public void saveCurrentIntervalIndex(int index){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt(Constants.CURRENT_INTERVAL, index);
+        editor.apply();
+
+    }
+
+    public int getCurrentIntervalInMillis(){
+        int currentIntervalIndex = getCurrentIntervalIndex();
+
+        return intervals[currentIntervalIndex];
+    }
+
+
     public Locality loadLastLocationFromPreferences(){
         SharedPreferences preferences =
                 PreferenceManager.getDefaultSharedPreferences(ctx);
@@ -67,10 +110,34 @@ public final class AppManager {
     }
 
 
+    public boolean getAlarmState() {
+        SharedPreferences preferences =
+                PreferenceManager.getDefaultSharedPreferences(ctx);
+        boolean alarmState = preferences.getBoolean(Constants.ALARM_STATE, false);
+
+
+        return alarmState;
+    }
+
+
+    public void setAlarmState(boolean alarmState){
+        SharedPreferences preferences =
+                PreferenceManager.getDefaultSharedPreferences(ctx);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean(Constants.ALARM_STATE, alarmState);
+        editor.apply();
+    }
+
+
 
 
     // Getters & Setters
     public Localization getLocalization() {
         return localization;
+    }
+
+
+    public int[] getIntervals() {
+        return intervals;
     }
 }
