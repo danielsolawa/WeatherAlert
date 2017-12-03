@@ -14,5 +14,11 @@
         android:orderInCategory="100"
         android:icon="@drawable/alarm"
         android:title="Manage Alerts"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/show_settings"
+        android:orderInCategory="100"
+        android:icon="@drawable/alarm"
+        android:title="Settings"
+        app:showAsAction="never" />
     </menu>

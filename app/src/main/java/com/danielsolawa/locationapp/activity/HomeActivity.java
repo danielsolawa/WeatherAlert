@@ -125,7 +125,9 @@ public class HomeActivity extends AppCompatActivity {
             case R.id.show_condition:
                 changeActivity(ConditionsActivity.class);
                 return true;
-
+            case R.id.show_settings:
+                changeActivity(SettingsActivity.class);
+                return true;
         }
 
 
