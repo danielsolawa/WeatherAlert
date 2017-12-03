@@ -12,7 +12,7 @@
     <string name="snow">Śnieg</string>
     <string name="thunderstorm">Burza</string>
     <string name="atmosphere">Inne</string>
-    <string name="select_weather_type">Wybierz typ pogody:</string>
+    <string name="select_weather_type">Typ pogody</string>
     <string name="temperature">Temperatura:</string>
     <string name="save">Zapisz</string>
     <string name="confirm">Zatwierdź</string>
@@ -25,7 +25,7 @@
     <string name="temperature_hint">Temperatura</string>
 
     <!-- Conditions activity section -->
-    <string name="alarms_on_off">Alarmy wł/wył</string>
+    <string name="alarms_on_off">Powiadomienia</string>
     <string name="click_to_remove">kliknij żeby usunąć</string>
     <string name="add_alarm">Dodaj alarm</string>
 

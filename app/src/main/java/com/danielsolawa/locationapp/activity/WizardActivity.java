@@ -247,8 +247,8 @@ public class WizardActivity extends FragmentActivity implements View.OnClickList
 
     public void setupSpinnerData(int data) {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                data, R.layout.spinner_item);
-        adapter.setDropDownViewResource(R.layout.spinner_dropdown_items);
+                data, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinner.setAdapter(adapter);
 

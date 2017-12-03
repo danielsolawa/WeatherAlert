@@ -24,7 +24,7 @@
     <string name="snow">Snow</string>
     <string name="thunderstorm">Storm</string>
     <string name="atmosphere">Atmosphere</string>
-    <string name="select_weather_type">Select weather type:</string>
+    <string name="select_weather_type">Weather type</string>
     <string name="temperature">Temperature:</string>
     <string name="save">Save</string>
     <string name="confirm">Confirm</string>
@@ -37,7 +37,7 @@
     <string name="temperature_hint">Temperature</string>
 
     <!-- Conditions activity section -->
-    <string name="alarms_on_off">Alarms on/off</string>
+    <string name="alarms_on_off">Notifications</string>
     <string name="click_to_remove">click to remove</string>
     <string name="add_alarm">Add alarm</string>
 

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorLightGrey"
     tools:context="com.danielsolawa.locationapp.activity.SettingsActivity">
 
     <LinearLayout
@@ -26,7 +27,7 @@
 
         <TextView
             android:id="@+id/textView"
-            android:background="@drawable/underline_style"
+            android:background="@drawable/underline_reverse_style"
             android:textAlignment="center"
             android:textSize="25dp"
             android:layout_width="match_parent"
@@ -58,8 +59,10 @@
 
         <Button
             android:id="@+id/save_settings"
+            android:background="@drawable/button_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorDarkestGrey"
             android:text="@string/save"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

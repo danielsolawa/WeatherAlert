@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorLightGrey"
     tools:context="com.danielsolawa.locationapp.activity.WizardActivity">
 
     <LinearLayout
@@ -21,49 +22,67 @@
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintTop_creator="1">
 
-        <RadioGroup
-            android:id="@+id/rg_weather"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="25dp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp">
 
-            <EditText
-                android:id="@+id/spinner_tv"
+            <RadioGroup
+                android:id="@+id/rg_weather"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/spinner_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/underline_reverse_style"
+                    android:enabled="false"
+                    android:text="@string/select_weather_type"
+                    android:textColor="@color/colorDarkestGrey"
+                    android:textSize="20dp" />
+
+            </RadioGroup>
+
+            <Spinner
+                android:id="@+id/weather_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:enabled="false"
-                android:text="@string/select_weather_type"
-                android:textColor="@color/colorBlack"
-                android:textSize="25sp" />
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1" />
 
-        </RadioGroup>
 
-        <Spinner
-            android:id="@+id/weather_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/spinner_style"
-            android:visibility="visible" />
+        </LinearLayout>
 
         <EditText
             android:id="@+id/ed_temp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/underline_reverse_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:enabled="true"
             android:digits="0123456789-."
             android:ems="10"
+            android:enabled="true"
+            android:layout_marginBottom="20dp"
             android:hint="@string/temperature_hint"
             android:inputType="numberDecimal"
-            android:textColor="@color/colorBlack"
-            android:textSize="25sp"/>
+            android:textColor="@color/colorDarkestGrey"
+            android:textSize="20dp" />
 
         <Button
             android:id="@+id/saveData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/save" />
+            android:background="@drawable/button_style"
+            android:text="@string/save"
+            android:textColor="@color/colorDarkestGrey" />
 
 
     </LinearLayout>
@@ -73,7 +92,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -88,6 +107,7 @@
             android:id="@+id/confirm_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/underline_reverse_style"
             android:padding="15dp"
             android:text="TextView"
             android:textAlignment="center"
@@ -97,13 +117,17 @@
             android:id="@+id/confirm_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/confirm" />
+            android:background="@drawable/button_style"
+            android:text="@string/confirm"
+            android:textColor="@color/colorDarkestGrey" />
 
         <Button
             android:id="@+id/edit_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/edit" />
+            android:background="@drawable/button_style"
+            android:text="@string/edit"
+            android:textColor="@color/colorDarkestGrey" />
     </LinearLayout>
 
 
