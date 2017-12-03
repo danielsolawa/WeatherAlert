@@ -34,12 +34,30 @@
                 android:id="@+id/alarm_switch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:text="@string/alarms_on_off"
                 style="@style/SwitchCompatStyle"
-                android:textAlignment="textStart"
-                android:checked="true"/> <!-- to remove -->
+                android:thumbTextPadding="25dp"
+                android:switchMinWidth="56dp"
+                android:text="@string/alarms_on_off"
+                android:textAlignment="gravity"
+                android:textSize="15dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <ListView
+                android:id="@+id/conditions_lv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3.07" />
 
             <Button
                 android:id="@+id/add_alert_btn"
@@ -47,14 +65,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/add_alarm" />
-
-
-
         </LinearLayout>
-
-        <ListView
-            android:id="@+id/conditions_lv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
     </LinearLayout>
+
+
 </android.support.constraint.ConstraintLayout>

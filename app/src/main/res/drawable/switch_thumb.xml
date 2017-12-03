@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list
     xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item>
         <shape android:shape="oval">
+            <solid android:color="@color/colorDarkestGrey" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="oval" android:bottom="2dp" android:left="1dp"
+            android:right="1dp" android:top="1dp">
             <solid android:color="@color/colorWhite"/>
         </shape>
     </item>
-    <item android:bottom="2dp" android:left="1dp"
-        android:right="1dp" android:top="1dp">
-        <shape android:shape="oval">
-            <solid android:color="@color/colorPrimaryDark"/>
-        </shape>
-    </item>
     <item>
-        <bitmap android:src="@drawable/alarm"
-            android:tint="@color/colorWhite" />
+        <bitmap android:src="@drawable/alarm_thumb"
+            android:tint="@color/switch_color" />
     </item>
 
     </layer-list>
