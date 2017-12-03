@@ -77,11 +77,21 @@ public final class AppManager {
         return currentIntervalIndex;
     }
 
+
+    public void saveCurrentIntervalIndex(int index){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt(Constants.CURRENT_INTERVAL, index);
+        editor.apply();
+
+    }
+
     public int getCurrentIntervalInMillis(){
         int currentIntervalIndex = getCurrentIntervalIndex();
 
         return intervals[currentIntervalIndex];
     }
+
 
     public Locality loadLastLocationFromPreferences(){
         SharedPreferences preferences =

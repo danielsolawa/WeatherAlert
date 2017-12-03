@@ -7,8 +7,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.danielsolawa.locationapp.R;
+import com.danielsolawa.locationapp.model.Alert;
+import com.danielsolawa.locationapp.utils.AlertUtils;
 import com.danielsolawa.locationapp.utils.AppManager;
 
 public class SettingsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -18,6 +21,7 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     private Button saveButton;
     private int[] intervals;
     private int currentIntervalIndex;
+    private AppManager appManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +34,9 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     }
 
     private void init() {
-        AppManager appManager = AppManager.getInstance(getApplicationContext());
+        appManager = AppManager.getInstance(getApplicationContext());
         intervals = appManager.getIntervals();
+        AlertUtils.init(getApplicationContext());
 
         notificationsSpinner = (Spinner) findViewById(R.id.interval_spinner);
         notificationsSpinner.setOnItemSelectedListener(this);
@@ -67,7 +72,23 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     }
 
     private void saveData() {
-        
+        saveNotificationsInterval();
+        createToast();
+        finish();
+    }
+
+    private void saveNotificationsInterval() {
+        appManager.saveCurrentIntervalIndex(currentIntervalIndex);
+        changeIntervals();
+    }
+
+    private void changeIntervals() {
+        AlertUtils.stopJob();
+        AlertUtils.scheduleJob();
+    }
+
+    private void createToast(){
+        Toast.makeText(getApplicationContext(), "Data saved", Toast.LENGTH_SHORT).show();
     }
 
 }
