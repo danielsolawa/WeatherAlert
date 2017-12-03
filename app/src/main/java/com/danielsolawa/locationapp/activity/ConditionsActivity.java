@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SwitchCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -42,7 +43,7 @@ public class ConditionsActivity extends AppCompatActivity {
 
     //views
     private ListView conditionsListView;
-    private Switch alarmSwitch;
+    private SwitchCompat alarmSwitch;
     private Button addAlertButton;
     private AppManager appManager;
 
@@ -63,7 +64,7 @@ public class ConditionsActivity extends AppCompatActivity {
         appManager = AppManager.getInstance(getApplicationContext());
         initJobScheduler();
         localization = appManager.getLocalization();
-        alarmSwitch = (Switch) findViewById(R.id.alarm_switch);
+        alarmSwitch = (SwitchCompat) findViewById(R.id.alarm_switch);
         alarmSwitch.setChecked(appManager.getAlarmState());
         alarmSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

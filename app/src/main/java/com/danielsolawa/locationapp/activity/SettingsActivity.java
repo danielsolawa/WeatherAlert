@@ -79,7 +79,10 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
 
     private void saveNotificationsInterval() {
         appManager.saveCurrentIntervalIndex(currentIntervalIndex);
-        changeIntervals();
+        if(appManager.getAlarmState()){
+            changeIntervals();
+        }
+
     }
 
     private void changeIntervals() {

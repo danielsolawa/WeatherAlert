@@ -10,12 +10,19 @@
     <item>
         <shape android:shape="oval" android:bottom="2dp" android:left="1dp"
             android:right="1dp" android:top="1dp">
-            <solid android:color="@color/colorWhite"/>
+            <solid android:color="@color/switch_color"/>
         </shape>
     </item>
-    <item>
+    <item
+        android:left="5dp"
+        android:right="5dp"
+        android:top="5dp"
+        android:bottom="5dp">
         <bitmap android:src="@drawable/alarm_thumb"
-            android:tint="@color/switch_color" />
+            android:tint="@color/colorWhite"
+            android:antialias="true"
+            />
+
     </item>
 
     </layer-list>
