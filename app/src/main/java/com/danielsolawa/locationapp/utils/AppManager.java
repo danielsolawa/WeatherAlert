@@ -15,11 +15,29 @@ public final class AppManager {
 
     private static volatile AppManager instance = null;
     private Localization localization;
+    private int [] intervals;
     private Context ctx;
 
     private AppManager(Context ctx){
         this.ctx = ctx;
         localization = new Localization(ctx);
+        initIntervals();
+    }
+
+    private void initIntervals() {
+        intervals = new int[5];
+        for(int i = 0; i < intervals.length; i++){
+            if(i == 0){
+                intervals[i] = Constants.ONE_HOUR;
+                continue;
+            }
+            if(i < 4){
+                intervals[i] = (i + 1) * Constants.ONE_HOUR;
+            }else{
+                intervals[i] = (i * 3) * Constants.ONE_HOUR;
+            }
+        }
+
     }
 
     public static AppManager getInstance(Context ctx){
@@ -72,5 +90,10 @@ public final class AppManager {
     // Getters & Setters
     public Localization getLocalization() {
         return localization;
+    }
+
+
+    public int[] getIntervals() {
+        return intervals;
     }
 }

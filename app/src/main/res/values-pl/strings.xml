@@ -47,6 +47,7 @@
     <string name="times_a_day">razy dziennie</string>
 
 
+
     <!-- Weather conditions-->
     <string-array name="weather_conditions">
         <!-- thunderstorm-->

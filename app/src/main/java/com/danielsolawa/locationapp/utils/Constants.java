@@ -7,14 +7,9 @@ package com.danielsolawa.locationapp.utils;
 public final class Constants {
 
     public static final int ONE_HOUR = 1000 * 60 * 60; // 24 times a day
-    public static final int TWO_HOURS = 1000 * 60 * 60 * 2; // 12 times a day
     public static final int THREE_HOURS = 1000 * 60 * 60 * 3; // 8 times a day
-    public static final int FOUR_HOURS = 1000 * 60 * 60 * 4; // 6 times a day
-    public static final int EIGHT_HOURS = 1000 * 60 * 60 * 8; // 3 times a day
-    public static final int TWELVE_HOURS = 1000 * 60 * 60 * 12; // twice a day
-    public static final int TWENTY_FOUR_HOURS = 1000 * 60 * 60 * 24; // once a day
 
-    private static int [] intervals;
+
 
     public static final int SUCCESS_RESULT = 0;
     public static final int FAILURE_RESULT = 1;
@@ -30,26 +25,7 @@ public final class Constants {
 
 
 
-    public static int[] getIntervalsArray(){
-        if(intervals == null){
-            intervals = new int[5];
 
-            for(int i = 0; i < intervals.length; i++){
-                if(i == 0){
-                    intervals[i] = ONE_HOUR;
-                    continue;
-                }
-                if(i < 4){
-                    intervals[i] = (i + 1) * ONE_HOUR;
-                }else{
-                    intervals[i] = (i  * 3) * ONE_HOUR;
-                }
-
-            }
-        }
-
-        return intervals;
-    }
 
 
 
