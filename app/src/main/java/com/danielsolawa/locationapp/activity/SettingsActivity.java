@@ -1,8 +1,15 @@
 package com.danielsolawa.locationapp.activity;
 
-/**
- * Created by NeverForgive on 2017-12-03.
- */
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 
-public class SettingsActivity {
+import com.danielsolawa.locationapp.R;
+
+public class SettingsActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_settings);
+    }
 }
