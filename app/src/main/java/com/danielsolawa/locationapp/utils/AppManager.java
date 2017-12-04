@@ -3,9 +3,12 @@ package com.danielsolawa.locationapp.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.activeandroid.query.Select;
 import com.danielsolawa.locationapp.model.Locality;
+
+import java.util.Arrays;
 
 import static com.danielsolawa.locationapp.utils.Constants.CURRENT_INTERVAL;
 
@@ -33,14 +36,21 @@ public final class AppManager {
                 intervals[i] = Constants.ONE_HOUR;
                 continue;
             }
-            if(i < 4){
-                intervals[i] = (i + 1) * Constants.ONE_HOUR;
+
+            int multiplier = i;
+
+            if(i < intervals.length - 1){
+                multiplier += 1;
             }else{
-                intervals[i] = (i * 3) * Constants.ONE_HOUR;
+                multiplier += 2;
             }
+
+            intervals[i] = Constants.ONE_HOUR * multiplier;
         }
 
+
     }
+
 
     public static AppManager getInstance(Context ctx){
         if(instance == null){
