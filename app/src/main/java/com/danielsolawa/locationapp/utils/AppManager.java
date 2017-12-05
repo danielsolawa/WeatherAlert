@@ -46,7 +46,7 @@ public final class AppManager {
             intervals[i] = Constants.ONE_HOUR * multiplier;
         }
 
-        
+
 
         }
 
