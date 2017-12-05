@@ -98,19 +98,14 @@ public class HomeActivity extends AppCompatActivity {
     private void fetchLastLocation() {
 
         lastLocation = appManager.loadLastLocationFromPreferences();
-<<<<<<< HEAD
-            if(lastLocation != null){
-                fetchCurrentWeather(lastLocation);
-            }else{
-                getCurrentLocation();
-            }
-=======
+
+
         if(lastLocation != null){
             fetchCurrentWeather(lastLocation);
         }
 
 
->>>>>>> second
+
 
     }
 
