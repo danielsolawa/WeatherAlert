@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- This is the line -->
+    <!-- This is the  1st line -->
+    <item android:bottom="0.75dp"  android:left="0.75dp">
+        <shape>
+            <solid android:color="@color/colorDarkestGrey" />
+            <corners android:radius="4dp"/>
+        </shape>
+    </item>
+
+    <!-- This is the  1st line -->
     <item>
         <shape>
             <solid android:color="@color/colorDarkerGrey" />
-            <corners android:radius="7dp"/>
+            <corners android:radius="4dp"/>
         </shape>
     </item>
+
+
     <!-- This is the main color -->
-    <item android:bottom="2dp"  android:left="2dp">
+    <item android:bottom="0.5dp"  android:left="0.5dp">
         <shape>
-            <solid android:color="@color/colorWhite" />
-            <corners android:radius="7dp"/>
+            <solid android:color="@color/colorLightGrey" />
+            <corners android:radius="4dp"/>
         </shape>
     </item>
 </layer-list>

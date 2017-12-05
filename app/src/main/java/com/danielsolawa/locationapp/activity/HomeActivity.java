@@ -92,17 +92,25 @@ public class HomeActivity extends AppCompatActivity {
         visibilityTv = (TextView) findViewById(R.id.visibility_tv);
         windSpeedTv = (TextView) findViewById(R.id.wind_speed_tv);
 
-
+        initLocationUtils();
     }
 
     private void fetchLastLocation() {
 
         lastLocation = appManager.loadLastLocationFromPreferences();
+<<<<<<< HEAD
             if(lastLocation != null){
                 fetchCurrentWeather(lastLocation);
             }else{
                 getCurrentLocation();
             }
+=======
+        if(lastLocation != null){
+            fetchCurrentWeather(lastLocation);
+        }
+
+
+>>>>>>> second
 
     }
 
@@ -120,7 +128,7 @@ public class HomeActivity extends AppCompatActivity {
 
         switch (id){
             case R.id.action_update:
-                getCurrentLocation();
+                locationUtils.updateLocation();
                 return true;
             case R.id.show_condition:
                 changeActivity(ConditionsActivity.class);
@@ -145,7 +153,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
-    private void getCurrentLocation() {
+    private void initLocationUtils() {
 
 
         locationUtils = new LocationUtils(this, new LocationResultHandler() {
@@ -174,6 +182,8 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
+
+
 
 
 

@@ -5,6 +5,10 @@
         <item>12</item>
         <item>8</item>
         <item>6</item>
+<<<<<<< HEAD
         <item>2</item>
+=======
+        <item>4</item>
+>>>>>>> second
     </string-array>
 </resources>

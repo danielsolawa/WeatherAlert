@@ -61,14 +61,14 @@ public class LocationUtils {
 
         checkLocationPermission();
         checkLocationSettings();
-        initialize();
+        start();
 
     }
 
 
 
 
-    private void initialize() {
+    private void start() {
         resultReceiver = new AddressResultReceiver(new Handler());
         client = LocationServices.getFusedLocationProviderClient(activity);
 
