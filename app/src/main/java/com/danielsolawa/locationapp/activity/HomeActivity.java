@@ -2,6 +2,7 @@ package com.danielsolawa.locationapp.activity;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -96,12 +97,14 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void fetchLastLocation() {
-
         lastLocation = appManager.loadLastLocationFromPreferences();
-
 
         if(lastLocation != null){
             fetchCurrentWeather(lastLocation);
+        }else{
+            if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP_MR1){
+                locationUtils.updateLocation();
+            }
         }
 
 
