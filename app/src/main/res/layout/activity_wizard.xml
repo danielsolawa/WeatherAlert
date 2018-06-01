@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorLightGrey"
+    android:background="@drawable/background_color"
     tools:context="com.danielsolawa.locationapp.activity.WizardActivity">
 
     <LinearLayout
@@ -34,7 +34,7 @@
             <RadioGroup
                 android:id="@+id/rg_weather"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:orientation="vertical">
 
@@ -42,18 +42,18 @@
                     android:id="@+id/spinner_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:background="@drawable/underline_reverse_style"
+                    android:textStyle="bold"
                     android:enabled="false"
+                    android:textColor="@color/colorBlack"
                     android:text="@string/select_weather_type"
-                    android:textColor="@color/colorDarkestGrey"
-                    android:textSize="20dp" />
+                    android:textSize="25dp" />
 
             </RadioGroup>
 
             <Spinner
                 android:id="@+id/weather_spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1" />
@@ -92,7 +92,6 @@
             android:id="@+id/confirm_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/underline_reverse_style"
             android:padding="15dp"
             android:text="TextView"
             android:textAlignment="center"

@@ -1,5 +1,7 @@
 package com.danielsolawa.locationapp.utils;
 
+import android.util.Log;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -26,6 +28,12 @@ public class DateUtils {
         return dateFormat.format(cal.getTime());
     }
 
+    public static int getCurrentHour(){
+        Calendar cal = Calendar.getInstance();
+
+        return cal.get(Calendar.HOUR_OF_DAY);
+    }
+
 
     public static String getLocalizedDate(String date){
         Calendar cal = Calendar.getInstance();
@@ -45,4 +53,10 @@ public class DateUtils {
 
         return dateFormat.format(cal.getTime());
     }
+
+    public static String getLocalizedDateNewLine(String date){
+        String[] arr = getLocalizedDate(date).split(" ");
+        return new StringBuilder().append(arr[1]).toString();
+    }
+
 }

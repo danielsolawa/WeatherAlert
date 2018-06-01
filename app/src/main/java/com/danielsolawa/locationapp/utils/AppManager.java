@@ -79,7 +79,7 @@ public final class AppManager {
 
     public int getCurrentForecast(){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
-        return preferences.getInt(CURRENT_FORECAST, 0);
+        return preferences.getInt(CURRENT_FORECAST, 1);
     }
 
 

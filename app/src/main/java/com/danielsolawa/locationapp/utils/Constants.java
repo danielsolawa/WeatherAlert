@@ -25,6 +25,7 @@ public final class Constants {
     public static final String LAST_LOCATION = PACKAGE_NAME + ".LAST_LOCATION";
     public static final String FIRST_TIME = PACKAGE_NAME + ".FIRST_TIME";
     public static final String ALARM_STATE = PACKAGE_NAME + ".ALARM_STATE";
+    public static final String DARK_MODE = PACKAGE_NAME + ".DARK_MODE";
 
 
 

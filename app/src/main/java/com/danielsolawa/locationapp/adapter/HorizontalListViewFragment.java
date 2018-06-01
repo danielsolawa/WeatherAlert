@@ -1,5 +1,6 @@
 package com.danielsolawa.locationapp.adapter;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
@@ -34,12 +35,14 @@ public class HorizontalListViewFragment extends Fragment {
     public static final String TAG = HorizontalListViewFragment.class.getSimpleName();
     private List<WeatherData> listData = new ArrayList<>();
     private RecyclerView recyclerView;
+    private boolean darkMode;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Parcelable list = getArguments().getParcelable(Constants.WEATHER_DATA_LIST);
+        darkMode = getArguments().getBoolean(Constants.DARK_MODE);
         listData = Parcels.unwrap(list);
 
 
@@ -96,12 +99,16 @@ public class HorizontalListViewFragment extends Fragment {
 
 
             holder.icon.setImageResource(imageId);
-            String windSpeed = convertSpeed(weatherData.getWindSpeed());
-            holder.windSpeedTv.setText(String.format("%s km/h", windSpeed));
+
             holder.tempTv.setText(String.format("%s \u00b0C",
                     weatherData.getTemp()));
-            holder.descTv.setText(weatherData.getDescription());
             holder.dateTv.setText(DateUtils.getLocalizedDate(weatherData.getDate()));
+
+            if(darkMode){
+                holder.tempTv.setTextColor(Color.WHITE);
+                holder.dateTv.setTextColor(Color.WHITE);
+            }
+
         }
 
 
@@ -122,16 +129,12 @@ public class HorizontalListViewFragment extends Fragment {
 
     public class WeatherViewHolder extends  RecyclerView.ViewHolder{
         public ImageView icon;
-        public TextView windSpeedTv;
-        public TextView descTv;
         public TextView dateTv;
         public TextView tempTv;
 
         public WeatherViewHolder(View itemView) {
             super(itemView);
             icon = (ImageView) itemView.findViewById(R.id.icon_rv);
-            windSpeedTv = (TextView) itemView.findViewById(R.id.wind_speed_rv);
-            descTv = (TextView) itemView.findViewById(R.id.desc_rv);
             dateTv = (TextView) itemView.findViewById(R.id.date_rv);
             tempTv = (TextView) itemView.findViewById(R.id.temp_rv);
         }

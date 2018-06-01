@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorLightGrey"
+    android:background="@drawable/background_color"
     tools:context="com.danielsolawa.locationapp.activity.SettingsActivity">
 
     <LinearLayout
@@ -27,9 +27,9 @@
 
         <TextView
         android:id="@+id/textView"
-        android:background="@drawable/underline_reverse_style"
         android:textAlignment="center"
         android:textSize="25dp"
+            android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/alarm_interval" />
@@ -61,8 +61,8 @@
 
         <TextView
             android:id="@+id/textView1"
-            android:background="@drawable/underline_reverse_style"
             android:textAlignment="center"
+            android:textStyle="bold"
             android:textSize="25dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

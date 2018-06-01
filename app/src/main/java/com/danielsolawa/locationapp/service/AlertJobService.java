@@ -92,11 +92,9 @@ public class AlertJobService extends JobService implements Runnable{
 
     private void setupCalendar() {
         int forecastInterval = appManager.getCurrentForecast();
-        String pattern = "yyyy-MM-dd";
-        SimpleDateFormat format = new SimpleDateFormat(pattern, Locale.getDefault());
         cal = Calendar.getInstance();
         cal.add(Calendar.DAY_OF_MONTH, forecastInterval);
-        //dateAsString = format.format(cal.getTime());
+
     }
 
 
