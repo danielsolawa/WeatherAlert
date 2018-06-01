@@ -17,8 +17,6 @@ public class Alert extends Model{
     @Column(name ="weather_condition")
     private String weatherCondition;
 
-    @Column(name = "temperature_condition")
-    private double temperatureCondition;
 
     @Column(name = "locality",
             onUpdate = Column.ForeignKeyAction.CASCADE,
@@ -37,13 +35,6 @@ public class Alert extends Model{
         this.weatherCondition = weatherCondition;
     }
 
-    public double getTemperatureCondition() {
-        return temperatureCondition;
-    }
-
-    public void setTemperatureCondition(double temperatureCondition) {
-        this.temperatureCondition = temperatureCondition;
-    }
 
     public Locality getLocality() {
         return locality;
@@ -54,11 +45,9 @@ public class Alert extends Model{
     }
 
     @Override
-    public String
-    toString() {
+    public String toString() {
         return "Alert{" +
                 "weatherCondition='" + weatherCondition + '\'' +
-                ", temperatureCondition=" + temperatureCondition +
                 ", locality=" + locality +
                 '}';
     }

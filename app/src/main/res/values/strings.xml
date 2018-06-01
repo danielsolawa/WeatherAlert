@@ -57,7 +57,9 @@
 
     <!-- Settings -->
     <string name="alarm_interval">Notifications</string>
+    <string name="alarm_frequency">Forecast</string>
     <string name="times_a_day">times a day</string>
+    <string name="for_day">for</string>
 
 
 

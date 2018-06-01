@@ -9,6 +9,7 @@ import com.activeandroid.query.Select;
 import com.danielsolawa.locationapp.model.Locality;
 
 
+import static com.danielsolawa.locationapp.utils.Constants.CURRENT_FORECAST;
 import static com.danielsolawa.locationapp.utils.Constants.CURRENT_INTERVAL;
 
 /**
@@ -37,11 +38,7 @@ public final class AppManager {
             }
             int multiplier = i;
 
-            if(i < intervals.length - 1){
-                multiplier += 1;
-            }else{
-                multiplier += 2;
-            }
+            multiplier = intervals.length - 1 > i ? multiplier + 1 : multiplier + 2;
 
             intervals[i] = Constants.ONE_HOUR * multiplier;
         }
@@ -49,9 +46,6 @@ public final class AppManager {
 
 
         }
-
-
-
 
 
 
@@ -83,11 +77,23 @@ public final class AppManager {
 
     }
 
+    public int getCurrentForecast(){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
+        return preferences.getInt(CURRENT_FORECAST, 0);
+    }
+
+
+    public void saveCurrentForecast(int value){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt(CURRENT_FORECAST, value);
+        editor.apply();
+    }
+
     public int getCurrentIntervalIndex(){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
-        int currentIntervalIndex = preferences.getInt(CURRENT_INTERVAL, 3);
 
-        return currentIntervalIndex;
+        return preferences.getInt(CURRENT_INTERVAL, 3);
     }
 
 
@@ -126,10 +132,7 @@ public final class AppManager {
     public boolean getAlarmState() {
         SharedPreferences preferences =
                 PreferenceManager.getDefaultSharedPreferences(ctx);
-        boolean alarmState = preferences.getBoolean(Constants.ALARM_STATE, false);
-
-
-        return alarmState;
+        return preferences.getBoolean(Constants.ALARM_STATE, false);
     }
 
 

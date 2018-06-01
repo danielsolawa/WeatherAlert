@@ -47,11 +47,9 @@ public class ConditionsAdapter extends ArrayAdapter<Alert>{
                 (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(ROW_LAYOUT, parent, false);
         TextView localityTv = (TextView) rowView.findViewById(R.id.locality_tv_lv);
-        TextView tempTv = (TextView) rowView.findViewById(R.id.temperature_tv_lv);
         TextView descTv = (TextView) rowView.findViewById(R.id.desc_tv_lv);
 
         localityTv.setText(alert.getLocality().getName());
-        tempTv.setText(alert.getTemperatureCondition() + "\u00b0C");
         String weatherCondition = alert.getWeatherCondition();
         if(localization.isLocalized()){
             weatherCondition = localization.localizeAlertConditionString(weatherCondition);

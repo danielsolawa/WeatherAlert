@@ -44,7 +44,9 @@
 
     <!-- Settings -->
     <string name="alarm_interval">Powiadomienia</string>
+    <string name="alarm_frequency">Prognoza</string>
     <string name="times_a_day">razy dziennie</string>
+    <string name="for_day">na</string>
 
 
 

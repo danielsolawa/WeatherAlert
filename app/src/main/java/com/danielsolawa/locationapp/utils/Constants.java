@@ -16,6 +16,7 @@ public final class Constants {
     public static final int FAILURE_RESULT = 1;
     public static final String PACKAGE_NAME = "com.danielsolawa.locationapp.utils";
     public static final String CURRENT_INTERVAL  = PACKAGE_NAME + ".CURRENT_INTERVAL";
+    public static final String CURRENT_FORECAST  = PACKAGE_NAME + ".CURRENT_FORECAST";
     public static final String WEATHER_DATA_LIST = PACKAGE_NAME + ".WEATHER_DATA_LIST";
     public static final String RECEIVER = PACKAGE_NAME + ".RECEIVER";
     public static final String RESULT_DATA_KEY = PACKAGE_NAME + ".RESULT_DATA_KEY";

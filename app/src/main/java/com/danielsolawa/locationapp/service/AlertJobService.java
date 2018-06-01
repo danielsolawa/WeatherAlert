@@ -76,7 +76,6 @@ public class AlertJobService extends JobService implements Runnable{
     public boolean onStartJob(JobParameters params) {
         this.params = params;
         initialize();
-        new Thread(this).start();
 
         return true;
     }
@@ -86,16 +85,17 @@ public class AlertJobService extends JobService implements Runnable{
         localization = appManager.getLocalization();
         locality = appManager.loadLastLocationFromPreferences();
         alerts = getAlerts();
-
-
         setupCalendar();
+        Thread t =  new Thread(this);
+        t.start();
     }
 
     private void setupCalendar() {
+        int forecastInterval = appManager.getCurrentForecast();
         String pattern = "yyyy-MM-dd";
         SimpleDateFormat format = new SimpleDateFormat(pattern, Locale.getDefault());
         cal = Calendar.getInstance();
-        cal.add(Calendar.DAY_OF_MONTH, 1);
+        cal.add(Calendar.DAY_OF_MONTH, forecastInterval);
         //dateAsString = format.format(cal.getTime());
     }
 
@@ -287,12 +287,10 @@ public class AlertJobService extends JobService implements Runnable{
             Log.d(TAG, e.getMessage());
         }
 
-        int dayToComapare = compareDate.get(Calendar.DAY_OF_MONTH);
+        int dayToCompare = compareDate.get(Calendar.DAY_OF_MONTH);
         int tomorrow = cal.get(Calendar.DAY_OF_MONTH);
 
-        boolean isEqual = dayToComapare == tomorrow ? true : false;
-
-        return  isEqual;
+        return dayToCompare == tomorrow ? true : false;
 
     }
 

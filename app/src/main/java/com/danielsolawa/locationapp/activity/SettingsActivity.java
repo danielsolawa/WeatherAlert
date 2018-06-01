@@ -10,17 +10,18 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.danielsolawa.locationapp.R;
-import com.danielsolawa.locationapp.model.Alert;
 import com.danielsolawa.locationapp.utils.AlertUtils;
 import com.danielsolawa.locationapp.utils.AppManager;
 
-public class SettingsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class SettingsActivity extends AppCompatActivity {
 
     private static final String TAG = SettingsActivity.class.getSimpleName();
     private Spinner notificationsSpinner;
+    private Spinner forecastSpinner;
     private Button saveButton;
     private int[] intervals;
     private int currentIntervalIndex;
+    private int currentForecast;
     private AppManager appManager;
 
     @Override
@@ -38,10 +39,8 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         intervals = appManager.getIntervals();
         AlertUtils.init(getApplicationContext());
 
-        notificationsSpinner = (Spinner) findViewById(R.id.interval_spinner);
-        notificationsSpinner.setOnItemSelectedListener(this);
-        setupSpinner();
-        notificationsSpinner.setSelection(appManager.getCurrentIntervalIndex());
+        initNotificationSpinner();
+        initForecastSpinner();
 
         saveButton = (Button) findViewById(R.id.save_settings);
         saveButton.setOnClickListener(new View.OnClickListener() {
@@ -53,28 +52,71 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
     }
 
 
-    private void setupSpinner() {
+
+    private void initNotificationSpinner() {
+        notificationsSpinner = (Spinner) findViewById(R.id.interval_spinner);
+        notificationsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                currentIntervalIndex = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        setupNotificationSpinner();
+    }
+
+
+    private void setupNotificationSpinner() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.notifications_intervals, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         notificationsSpinner.setAdapter(adapter);
+        notificationsSpinner.setSelection(appManager.getCurrentIntervalIndex());
 
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        currentIntervalIndex = position;
+
+    private void initForecastSpinner() {
+        forecastSpinner = (Spinner) findViewById(R.id.alert_spinner);
+        forecastSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                currentForecast = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        setupForecastSpinner();
     }
 
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
+    private void setupForecastSpinner() {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.settings_forecast_key, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        forecastSpinner.setAdapter(adapter);
+
+         forecastSpinner.setSelection(appManager.getCurrentForecast());
 
     }
+
 
     private void saveData() {
         saveNotificationsInterval();
-        createToast();
+        saveForecastInterval();
+        createToast("Data saved");
         finish();
+    }
+
+    private void saveForecastInterval() {
+        appManager.saveCurrentForecast(currentForecast);
     }
 
     private void saveNotificationsInterval() {
@@ -90,8 +132,8 @@ public class SettingsActivity extends AppCompatActivity implements AdapterView.O
         AlertUtils.scheduleJob();
     }
 
-    private void createToast(){
-        Toast.makeText(getApplicationContext(), "Data saved", Toast.LENGTH_SHORT).show();
+    private void createToast(String message){
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
 }

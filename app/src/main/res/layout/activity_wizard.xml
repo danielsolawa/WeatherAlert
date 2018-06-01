@@ -61,21 +61,6 @@
 
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/ed_temp"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/underline_reverse_style"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:digits="0123456789-."
-            android:ems="10"
-            android:enabled="true"
-            android:layout_marginBottom="20dp"
-            android:hint="@string/temperature_hint"
-            android:inputType="numberDecimal"
-            android:textColor="@color/colorDarkestGrey"
-            android:textSize="20dp" />
-
         <Button
             android:id="@+id/saveData"
             android:layout_width="match_parent"

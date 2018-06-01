@@ -40,7 +40,6 @@ public class WizardActivity extends FragmentActivity implements View.OnClickList
 
 
     //views
-    private EditText etTemperature;
     private Button saveButton;
     private Button confirmButton;
     private Button editButton;
@@ -50,7 +49,6 @@ public class WizardActivity extends FragmentActivity implements View.OnClickList
     private TextView tvConfirm;
 
     private String weatherType;
-    private String temperature;
 
 
     @Override
@@ -73,7 +71,7 @@ public class WizardActivity extends FragmentActivity implements View.OnClickList
         confirmLayout = (LinearLayout) findViewById(R.id.confirm_layout);
         tvConfirm = (TextView) findViewById(R.id.confirm_tv);
 
-        etTemperature = (EditText) findViewById(R.id.ed_temp);
+
 
         saveButton = (Button) findViewById(R.id.saveData);
         confirmButton = (Button) findViewById(R.id.confirm_button);
@@ -121,25 +119,12 @@ public class WizardActivity extends FragmentActivity implements View.OnClickList
     }
 
     private void validateData() {
-        boolean error = false;
 
-        temperature = etTemperature.getText().toString();
-
-        if(TextUtils.isEmpty(temperature)){
-            error = true;
-            etTemperature.setError(getString(R.string.field_cant_be_empty));
-        }
-
-
-        if(!error){
-            StringBuilder builder = new StringBuilder();
-            builder.append(getString(R.string.locality)+ " " + locality.getName() + "\n");
-            builder.append(getString(R.string.weather_type)+ " "  + weatherType + "\n");
-            builder.append(getString(R.string.temperature)+ " " + temperature +  "\u00b0" + "C" );
-            tvConfirm.setText(builder.toString());
-            changeLayoutVisibility(View.GONE, View.VISIBLE);
-
-        }
+        StringBuilder builder = new StringBuilder();
+        builder.append(getString(R.string.locality)+ " " + locality.getName() + "\n");
+        builder.append(getString(R.string.weather_type)+ " "  + weatherType + "\n");
+        tvConfirm.setText(builder.toString());
+        changeLayoutVisibility(View.GONE, View.VISIBLE);
 
 
     }
@@ -163,7 +148,6 @@ public class WizardActivity extends FragmentActivity implements View.OnClickList
                     weatherType = loc.reverseLocalizeAlertConditionString(weatherType);
                 }
                 alert.setWeatherCondition(weatherType);
-                alert.setTemperatureCondition(Double.parseDouble(temperature));
                 alert.setLocality(locality);
                 alert.save();
 

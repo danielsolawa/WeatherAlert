@@ -25,9 +25,9 @@
 
         <ImageView
             android:id="@+id/icon_rv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.7"
+            android:layout_marginLeft="11dp"
+            android:layout_width="82dp"
+            android:layout_height="86dp"
             card_view:srcCompat="@drawable/i01d" />
 
         <TextView
