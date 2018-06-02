@@ -59,4 +59,9 @@ public class DateUtils {
         return new StringBuilder().append(arr[1]).toString();
     }
 
+    public static String getDateOnly(String date){
+        String[] arr = date.split(" ");
+        return new StringBuilder().append(arr[0]).toString();
+    }
+
 }
