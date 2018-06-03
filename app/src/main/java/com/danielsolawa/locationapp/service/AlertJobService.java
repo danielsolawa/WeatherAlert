@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.job.JobParameters;
 import android.app.job.JobService;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -21,6 +22,7 @@ import com.danielsolawa.locationapp.model.WeatherData;
 import com.danielsolawa.locationapp.utils.AlertPriority;
 import com.danielsolawa.locationapp.utils.AppManager;
 import com.danielsolawa.locationapp.utils.DateUtils;
+import com.danielsolawa.locationapp.utils.EmailUtils;
 import com.danielsolawa.locationapp.utils.Localization;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -61,6 +63,8 @@ public class AlertJobService extends JobService implements Runnable{
     private static final String NIGHT = "n";
     private static final String DAY = "d";
 
+    private boolean isEmailEnabled;
+    private String emailRecipients;
 
     private AppManager appManager;
     private Calendar cal;
@@ -68,6 +72,7 @@ public class AlertJobService extends JobService implements Runnable{
     private Localization localization;
     private List<Alert> alerts;
     private JobParameters params;
+    private Context ctx;
 
 
 
@@ -82,12 +87,19 @@ public class AlertJobService extends JobService implements Runnable{
 
     private void initialize() {
         appManager = AppManager.getInstance(getApplicationContext());
+        ctx = getApplicationContext();
         localization = appManager.getLocalization();
         locality = appManager.loadLastLocationFromPreferences();
         alerts = getAlerts();
+        setupEmail();
         setupCalendar();
         Thread t =  new Thread(this);
         t.start();
+    }
+
+    private void setupEmail() {
+        isEmailEnabled = appManager.isEmailEnabled();
+        emailRecipients = appManager.getEmailRecipients();
     }
 
     private void setupCalendar() {
@@ -173,6 +185,10 @@ public class AlertJobService extends JobService implements Runnable{
     private void prepareNotification(List<WeatherData> forecastList) {
         if(forecastList.size() > 0){
             WeatherData weatherData = AlertPriority.getHighestPriorityCondition(forecastList);
+
+            if(isEmailEnabled)
+                EmailUtils.sendEmail(ctx,
+                        weatherData, emailRecipients);
 
             sendNotification(weatherData);
 

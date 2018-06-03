@@ -148,6 +148,11 @@ public class ConditionsActivity extends AppCompatActivity {
                 deleteDialog.show(getFragmentManager(), TAG);
 
             }
+
+            @Override
+            public void onClick(long iD, String name) {
+
+            }
         });
 
         conditionsListView.setAdapter(adapter);

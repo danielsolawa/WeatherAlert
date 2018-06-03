@@ -73,6 +73,10 @@ public class HomeActivity extends AppCompatActivity {
     private TextView visibilityTv;
     private TextView windSpeedTv;
     private TextView dateTv;
+    private TextView sunriseTv;
+    private TextView sunsetTv;
+    private TextView minMaxTempTv;
+
 
 
     private TextView dateCardTv;
@@ -111,6 +115,9 @@ public class HomeActivity extends AppCompatActivity {
         pressureTv = (TextView) findViewById(R.id.pressure_tv);
         visibilityTv = (TextView) findViewById(R.id.visibility_tv);
         windSpeedTv = (TextView) findViewById(R.id.wind_speed_tv);
+        sunriseTv = (TextView) findViewById(R.id.sunrise_tv);
+        sunsetTv = (TextView) findViewById(R.id.sunset_tv);
+        minMaxTempTv = (TextView) findViewById(R.id.max_min_temp_tv);
 
         dateCardTv = (TextView) findViewById(R.id.date_rv);
         tempCardTv = (TextView) findViewById(R.id.temp_rv);
@@ -231,13 +238,18 @@ public class HomeActivity extends AppCompatActivity {
                     JSONObject weatherObject = response.getJSONArray("weather").getJSONObject(0);
                     JSONObject mainObject = response.getJSONObject("main");
                     JSONObject windObject = response.getJSONObject("wind");
+                    JSONObject sysObject = response.getJSONObject("sys");
 
                     weatherData.setDescription(weatherObject.getString("description"));
                     weatherData.setIcon("i" + weatherObject.getString("icon"));
                     weatherData.setPressure(mainObject.getDouble("pressure"));
                     weatherData.setTemp(mainObject.getDouble("temp"));
+                    weatherData.setMinTemp(mainObject.getDouble("temp_min"));
+                    weatherData.setMaxTemp(mainObject.getDouble("temp_max"));
                     weatherData.setVisibility(response.getDouble("visibility"));
                     weatherData.setWindSpeed(windObject.getDouble("speed"));
+                    weatherData.setSunrise(sysObject.getLong("sunrise"));
+                    weatherData.setSunset(sysObject.getLong("sunset"));
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -270,6 +282,10 @@ public class HomeActivity extends AppCompatActivity {
                 windSpeedTv.setText(String.format("%s km/h",
                         windSpeed));
                 dateTv.setText(DateUtils.getCurrentDate());
+                sunriseTv.setText(DateUtils.timestampToDate(weatherData.getSunrise()));
+                sunsetTv.setText(DateUtils.timestampToDate(weatherData.getSunset()));
+                minMaxTempTv.setText("min " + weatherData.getMinTemp() + "\u00b0C" + "\n"
+                        + "max " + weatherData.getMaxTemp() + "\u00b0C" );
 
 
                 fetchForecast(locality);
@@ -310,6 +326,9 @@ public class HomeActivity extends AppCompatActivity {
         visibilityTv.setTextColor(Color.WHITE);
         windSpeedTv.setTextColor(Color.WHITE);
         dateTv.setTextColor(Color.WHITE);
+        sunriseTv.setTextColor(Color.WHITE);
+        sunsetTv.setTextColor(Color.WHITE);
+        minMaxTempTv.setTextColor(Color.WHITE);
 
 
     }
@@ -438,7 +457,7 @@ public class HomeActivity extends AppCompatActivity {
         IAxisValueFormatter formatterY = new IAxisValueFormatter() {
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
-                return value + "\u00b0C";
+                return formatDegrees(value) + "\u00b0C";
             }
         };
 
@@ -488,6 +507,11 @@ public class HomeActivity extends AppCompatActivity {
         DecimalFormat dc = new DecimalFormat("###.##");
 
         return dc.format((visibility / 1000));
+    }
+
+    private String formatDegrees(float degrees){
+        DecimalFormat dc = new DecimalFormat("##.00");
+        return dc.format(degrees);
     }
 
     private String convertSpeed(double windSpeed) {

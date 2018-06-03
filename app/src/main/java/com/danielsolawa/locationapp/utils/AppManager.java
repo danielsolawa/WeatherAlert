@@ -9,8 +9,14 @@ import com.activeandroid.query.Select;
 import com.danielsolawa.locationapp.model.Locality;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static com.danielsolawa.locationapp.utils.Constants.CURRENT_FORECAST;
 import static com.danielsolawa.locationapp.utils.Constants.CURRENT_INTERVAL;
+import static com.danielsolawa.locationapp.utils.Constants.EMAIL_ENABLED;
+import static com.danielsolawa.locationapp.utils.Constants.EMAIL_RECIPIENT;
 
 /**
  * Created by NeverForgive on 2017-12-02.
@@ -83,6 +89,11 @@ public final class AppManager {
     }
 
 
+
+
+
+
+
     public void saveCurrentForecast(int value){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
         SharedPreferences.Editor editor = preferences.edit();
@@ -142,6 +153,61 @@ public final class AppManager {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean(Constants.ALARM_STATE, alarmState);
         editor.apply();
+    }
+
+
+
+
+    /*
+     * Email Section
+     */
+    public boolean isEmailEnabled(){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
+        return preferences.getBoolean(EMAIL_ENABLED, false);
+    }
+
+    public void setEmailEnabled(boolean enabled){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean(EMAIL_ENABLED, enabled);
+        editor.apply();
+    }
+
+    public String getEmailRecipients(){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
+        return preferences.getString(EMAIL_RECIPIENT, "");
+    }
+
+    public void saveEmailRecipient(String email){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
+        SharedPreferences.Editor editor = preferences.edit();
+
+
+        editor.putString(EMAIL_RECIPIENT, email);
+        editor.apply();
+    }
+
+    public List<String> emailsToList(){
+        String[] arr = getEmailRecipients().split(",");
+
+        List<String> list = new ArrayList<>(Arrays.asList(arr));
+        for(int i = 0; i < list.size(); i++){
+            if(list.get(i).isEmpty())
+                list.remove(i);
+        }
+
+        return list;
+    }
+
+    public String emailsToString(List<String> list){
+        String emails = "";
+        for(int i = 0; i < list.size(); i++){
+            if(i == 0)
+                emails += list.get(i);
+            else
+                emails += "," + list.get(i);
+        }
+        return emails;
     }
 
 

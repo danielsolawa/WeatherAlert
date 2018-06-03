@@ -37,6 +37,18 @@ public class WeatherData extends Model{
     @Column(name = "wind_speed")
     private double windSpeed;
 
+    @Column(name = "sunrise")
+    private long sunrise;
+
+    @Column(name = "sunset")
+    private long sunset;
+
+    @Column(name = "min_temp")
+    private double minTemp;
+
+    @Column(name = "max_temp")
+    private double maxTemp;
+
 
     @Column(name = "locality",
             onDelete = Column.ForeignKeyAction.CASCADE,
@@ -49,7 +61,9 @@ public class WeatherData extends Model{
         super();
     }
 
-
+    /*
+     * Getters & Setters
+     */
     public String getDescription() {
         return description;
     }
@@ -106,6 +120,37 @@ public class WeatherData extends Model{
         this.windSpeed = windSpeed;
     }
 
+    public long getSunrise() {
+        return sunrise;
+    }
+
+    public void setSunrise(long sunrise) {
+        this.sunrise = sunrise;
+    }
+
+    public long getSunset() {
+        return sunset;
+    }
+
+    public void setSunset(long sunset) {
+        this.sunset = sunset;
+    }
+
+    public double getMinTemp() {
+        return minTemp;
+    }
+
+    public void setMinTemp(double minTemp) {
+        this.minTemp = minTemp;
+    }
+
+    public double getMaxTemp() {
+        return maxTemp;
+    }
+
+    public void setMaxTemp(double maxTemp) {
+        this.maxTemp = maxTemp;
+    }
 
     public Locality getLocality() {
         return locality;
@@ -125,6 +170,10 @@ public class WeatherData extends Model{
                 ", pressure=" + pressure +
                 ", visibility=" + visibility +
                 ", windSpeed=" + windSpeed +
+                ", sunrise=" + sunrise +
+                ", sunset=" + sunset +
+                ", minTemp=" + minTemp +
+                ", maxTemp=" + maxTemp +
                 ", locality=" + locality +
                 '}';
     }
