@@ -60,7 +60,7 @@ public class HorizontalListViewFragment extends Fragment {
         darkMode = getArguments().getBoolean(Constants.DARK_MODE);
         listData = Parcels.unwrap(list);
 
-        initViews();
+
 
     }
 
@@ -82,6 +82,7 @@ public class HorizontalListViewFragment extends Fragment {
                 toggleDetails(false);
             }
         });
+
     }
 
     private void toggleDetails(boolean show) {
@@ -97,6 +98,7 @@ public class HorizontalListViewFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        initViews();
         View view = inflater.inflate(R.layout.fragment_card, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.cardView);
         recyclerView.setHasFixedSize(true);
@@ -107,6 +109,8 @@ public class HorizontalListViewFragment extends Fragment {
         }
         recyclerView.setLayoutManager(layoutManager);
 
+        initViews();
+
         return view;
     }
 
@@ -114,7 +118,10 @@ public class HorizontalListViewFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
     }
+
+
 
 
     public class WeatherAdapter extends  RecyclerView.Adapter<WeatherViewHolder>{
